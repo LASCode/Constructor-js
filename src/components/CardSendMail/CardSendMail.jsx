@@ -5,7 +5,7 @@ import axios from "axios";
 import { ServerResponseModal } from "../ServerResponseModal/ServerResponseModal";
 
 const url = {
-  teras: 'http://constructor.teras-mebel.ru/PHPMailer/constructor_form.php',
+  teras: 'https://constructor.teras-mebel.ru/PHPMailer/constructor_form.php',
   akmetron: 'https://akmetron.ru/PHPMailer/constructor_form.php',
 }
 

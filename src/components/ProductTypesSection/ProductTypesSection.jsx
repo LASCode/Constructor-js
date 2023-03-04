@@ -15,6 +15,7 @@ const ProductTypesSection = ({typesArray, current, onChange}) => {
       <div className='ProductTypesSection__dropdown'>
         <TableTypeExpandableButton types={typesArray} current={current} onChange={(type) => onChange(type)}/>
       </div>
+      <a className='ProductTypesSection__backlink' href='https://www.teras-mebel.ru/katalog'>Вернуться в каталог</a>
     </div>
   );
 };

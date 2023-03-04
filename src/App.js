@@ -42,7 +42,7 @@ function App() {
           selected: 'No',
         },
         lightKit: {
-          hidden: true,
+          hidden: false,
           registered: true,
           options: ['Без освещения', 'Светодиодное'],
           selected: 'Без освещения'
