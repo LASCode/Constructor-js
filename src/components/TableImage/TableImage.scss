@@ -1,0 +1,49 @@
+.TableImage {
+
+  &__content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    cursor: zoom-in;
+    transition: all .5s;
+
+    &--zoom {
+      &-enter-done, &-enter-active {
+        transform: scale(1.4);
+        margin-left: 25px;
+      }
+      &-exit-done, &-exit-active {
+        transform: scale(1);
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__img {
+    //max-height: 430px;
+    //max-width: 430px;
+    max-height: 550px;
+    max-width: 550px;
+    position: absolute;
+    opacity: 0;
+    top: -50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .5s;
+
+    &.appear {
+      top: 0;
+      opacity: 1;
+    }
+    &.enter-active, &.enter-done {
+      top: 0;
+      opacity: 1;
+    }
+    &.exit-active, &.exit-done {
+      top: -50%;
+      opacity: 0;
+    }
+  }
+}

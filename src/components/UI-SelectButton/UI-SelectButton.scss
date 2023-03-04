@@ -1,0 +1,32 @@
+.UISelectButton {
+  display: inline-block;
+  padding: 0 10px;
+  border: 2px solid #3B43D4;
+  background-color: transparent;
+  color: #444444;
+  line-height: 30px;
+  font-size: 1rem;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
+  &:first-child {
+    border-radius: 8px 0 0 8px;
+  }
+  &:last-child {
+    border-radius: 0 8px 8px 0;
+  }
+  &:last-child:first-child {
+    border-radius: 8px;
+  }
+  &--active {
+    background-color: #3B43D4;
+    color: white;
+  }
+  &:disabled {
+    border: 2px solid #aaa;
+    background-color: #C7C7C7;
+    color: white;
+  }
+}

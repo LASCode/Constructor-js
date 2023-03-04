@@ -1,0 +1,47 @@
+.CardEstimate {
+  margin: 30px 50px;
+
+
+  &__title {
+    margin: 10px 0;
+    text-align: center;
+  }
+  &__table {
+    width: 100%;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-spacing: 0;
+  }
+  &__table th {
+    border-bottom: 1px solid black;
+    text-align: left;
+    font-size: 18px;
+    padding: 10px;
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+  &__table td {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 300;
+    letter-spacing: 0;
+    padding: 5px 10px;
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+  &__table tbody tr {
+    &:hover {
+      background-color: rgba(63,180,235,0.30);;
+    }
+    &:not(:last-child) td {
+      border-bottom: 1px solid black;
+    }
+  }
+  &__table tbody td {
+    &:not(:last-child) {
+      border-right: 1px solid black;
+    }
+  }
+}

@@ -1,0 +1,63 @@
+.TableTypeExpandableButton {
+  position: relative;
+  height: 100%;
+  display: flex;
+
+  &__primaryTypeButton {
+    position: relative;
+    display: inline-grid;
+    grid-template-columns: min-content min-content;
+    align-items: center;
+    grid-column-gap: 7px;
+    border-bottom-width: 0;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 21px;
+    line-height: 36px;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    transition: color .3s, background-color .3s;
+    border-radius: 13px 13px 0 0;
+    border-color: #3B43D4;
+    background-color: white;
+    border-bottom-color: transparent;
+    color: #444444;
+    padding: 0px 12px 2px 12px;
+    bottom: -2px;
+  }
+  &__buttonIcon {
+    font-size: 15px;
+    line-height: 21px;
+    color: gray;
+  }
+  &__buttonText {
+    font-size: 21px;
+    line-height: 21px;
+    color: gray;
+  }
+
+  &__dropdown {
+    position: absolute;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #aaaaaa;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 110;
+  }
+  &__typeButton {
+    cursor: pointer;
+    user-select: none;
+
+    &--active {
+      color: #3B43D4;
+    }
+  }
+}

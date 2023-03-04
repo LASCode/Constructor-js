@@ -1,0 +1,38 @@
+.ErrorMessageBox {
+  position: fixed;
+  width: 300px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  z-index: 150;
+
+
+  &__errorMessage {
+    max-height: 0;
+    opacity: 0;
+    text-align: center;
+    transition: all .5s;
+    background-color: whitesmoke;
+    overflow: hidden;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #bfbfbf;
+    &.enter-active, &.enter-done, &.appear-active {
+      max-height: 150px;
+      opacity: 1;
+    }
+  }
+  &__imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__img {
+    height: 40px;
+    width: 40px;
+  }
+
+
+}

@@ -1,0 +1,63 @@
+.CardSendMail {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  padding: 10px 30px 20px 30px;
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+
+  &__title {
+    padding: 0;
+    margin: 10px 0;
+    text-align: center;
+  }
+  &__form {
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-row-gap: 4px;
+  }
+  &__input {
+    padding: 5px 10px;
+    background-color: white;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #dbdbdb;
+  }
+  &__formItemContainer {
+    display: inline-flex;
+    flex-direction: column;
+  }
+  &__actions {
+    margin-top: 10px;
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-row-gap: 5px;
+  }
+  &__button {
+    padding: 7px 5px;
+    //background: linear-gradient(#00A8A8 100%, #00D2D2 100%);
+    background: #3C60D5;
+    border-radius: 5px;
+    font-size: 17px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 5px;
+    box-sizing: border-box;
+    border: 0;
+    user-select: none;
+    cursor: pointer;
+  }
+  &__errorMessage {
+    padding-left: 10px;
+    color: red;
+    margin: 0;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}

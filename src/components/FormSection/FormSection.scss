@@ -1,0 +1,24 @@
+.FormSection {
+  width: 100%;
+
+  &--inline {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__title {
+    margin: 0;
+    text-align: center;
+    font-size: 22px;
+    line-height: 28px;
+    color: #000;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  &__body {}
+  &__hr {
+    margin: 15px 0;
+    height: 1px;
+    background-color: #0fa2e614;
+  }
+}

@@ -1,0 +1,9 @@
+.UiCheckboxWrapped {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-column-gap: 5px;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}

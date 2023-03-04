@@ -1,0 +1,44 @@
+.UiRadioBtn {
+  display: inline-grid;
+  grid-template-columns: 20px 1fr;
+  grid-column-gap: 5px;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+
+  &__hiddenRadio {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+  }
+  &__visibleRadio {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    transition: all .5s;
+    background-color: transparent;
+    border: 2px solid #3bb3ea;
+    box-sizing: border-box;
+
+    &--active {
+      border: 6px solid #3bb3ea;
+      background-color: #3bb3ea;
+    }
+    &--active#{&}--disabled {
+      border: 6px solid #969595;
+      background-color: #969595;
+    }
+    &--active#{&}--error {
+      border: 6px solid #fd8f8f;
+      background-color: #fd8f8f;
+    }
+    &--disabled:not(&--active) {
+      border: 2px solid #969595;
+    }
+    &--error:not(&--active) {
+      border: 2px solid #fd8f8f;
+    }
+  }
+}

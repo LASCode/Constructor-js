@@ -1,0 +1,17 @@
+.ErrorHandler {
+  position: relative;
+  display: inline-block;
+  margin: 0 30px;
+
+  &__error {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    left: -35px;
+    top: -5px;
+  }
+  &__img {
+    height: 30px;
+    width: 30px;
+  }
+}

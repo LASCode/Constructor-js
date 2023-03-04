@@ -1,0 +1,10 @@
+.FsAccessories {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 2px solid #3B43D4;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+}

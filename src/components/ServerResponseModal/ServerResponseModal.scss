@@ -1,0 +1,53 @@
+.ServerResponseModal {
+  position: fixed;
+  background-color: rgba(1, 1, 1, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__modal {
+    width: 100%;
+    max-width: 300px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px 30px;
+    display: grid;
+    grid-auto-rows: min-content;
+    grid-row-gap: 15px;
+    justify-items: center;
+  }
+  &__title {
+    text-align: center;
+    font-size: 25px;
+
+
+    &--error { color: #ff5d5d; }
+    &--success { color: #3FA776; }
+    &--warning { color: #f6ce34; }
+  }
+  &__message {
+    max-width: 250px;
+    text-align: center;
+  }
+  &__closeBtn {
+    width: 100px;
+    padding: 3px;
+    background: linear-gradient(#00A8A8 100%, #00D2D2 100%);
+    border-radius: 8px;
+    font-size: 17px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 5px;
+    box-sizing: border-box;
+    border: 0;
+    user-select: none;
+    cursor: pointer;
+  }
+}

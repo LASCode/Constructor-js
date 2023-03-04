@@ -1,0 +1,16 @@
+.FsHrWrapper {
+  &__hr {
+    margin: 15px 10px;
+    height: 1px;
+    border: none;
+    background-color: #3B43D4;
+
+    &--bold {
+      height: 2px;
+      background-color: #3B43D4;
+    }
+    &--invisible {
+      background-color: transparent;
+    }
+  }
+}

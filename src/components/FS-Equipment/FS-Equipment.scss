@@ -1,0 +1,60 @@
+.FSEquipment {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 50px 0 50px;
+
+  &__pageList {
+    display: flex;
+    justify-content: center;
+    padding: 0 30px;
+  }
+  &__pageButton {
+    display: inline-block;
+    z-index: 10;
+    padding: 2px 12px 2px 12px;
+    border: 2px solid transparent;
+    border-bottom-width: 0;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+    transition: color .3s, background-color .3s;
+    color: #1b1b1d;
+    background-color: transparent;
+    border-radius: 13px 13px 0 0;
+    box-sizing: border-box;
+
+    &--active {
+      border-color: #aaaaaa;
+      background-color: white;
+      margin-bottom: -2px;
+      padding: 2px 12px 4px 12px;
+    }
+    &:hover {
+      border-color: #aaaaaa;
+      background-color: white;
+      margin-bottom: -2px;
+      padding: 2px 12px 4px 12px;
+    }
+    &:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+
+  &__fullPage {
+    padding: 10px 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 2px solid #aaaaaa;
+    display: flex;
+    flex-direction: column;
+  }
+  &__halfPage {
+    display: flex;
+    flex-direction: column;
+  }
+}

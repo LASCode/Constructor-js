@@ -1,0 +1,48 @@
+.UiCheckbox {
+
+  &__hiddenCheckbox {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    margin: 0;
+    padding: 0;
+  }
+  &__visibleCheckbox {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 15px;
+    width: 15px;
+    border: 2px solid #3BB3EA;
+    transition: all .5s;
+    box-sizing: border-box;
+
+    &--active {
+      border: 6px solid #3BB3EA;
+      background-color: #3BB3EA;
+    }
+    &--active#{&}--disabled {
+      border: 6px solid #969595;
+      background-color: #969595;
+    }
+    &--active#{&}--error {
+      border: 6px solid #fd8f8f;
+      background-color: #fd8f8f;
+    }
+    &--disabled:not(&--active) {
+      border: 2px solid #969595;
+    }
+    &--error:not(&--active) {
+      border: 2px solid #fd8f8f;
+    }
+  }
+  &__checkmarkImg {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    transition: all .5s;
+    opacity: 1;
+  }
+}

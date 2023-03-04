@@ -1,0 +1,8 @@
+.UiRadioBtnList {
+  display: flex;
+  justify-content: center;
+
+  &__label:not(:last-child) {
+    margin-right: 15px;
+  }
+}

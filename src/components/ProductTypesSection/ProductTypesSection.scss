@@ -1,0 +1,23 @@
+.ProductTypesSection {
+  display: flex;
+
+  &__full > *:not(:last-child) {
+    margin-right: 5px;
+  }
+
+  &__full {
+    display: block;
+  }
+  &__dropdown {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .ProductTypesSection__full {
+    display: none;
+  }
+  .ProductTypesSection__dropdown {
+    display: block;
+  }
+}
