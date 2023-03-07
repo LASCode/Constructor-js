@@ -92,7 +92,7 @@ const StyledPartImage = styled.div`
   background-image: url(${({src}) => src});
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 135%;
+  background-size: 130%;
   background-position-x: 45%;
   aspect-ratio: 1/1;
   transition: all .5s;

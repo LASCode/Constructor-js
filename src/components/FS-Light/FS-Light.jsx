@@ -14,6 +14,23 @@ const FsLight = ({state, error, setError, onChange}) => {
   }
   return (
     <>
+      {!mountKit.hidden &&
+          <FormSection title='Комплект крепления освещения:'>
+            <div className='FsLight__container'>
+              <UiRadioBtnList
+                  name='mountKit'
+                  target='light.mountKit'
+                  values={mountKit.options}
+                  selected={mountKit.selected}
+                  errors={error}
+                  onChange={(e) => changeLightKitData('mountKit', e.target.value)}
+                  checkDisabledFunc={() => !baseFrame.selected}
+                  checkErrorFunc={() => baseFrame.selected}
+                  throwErrorFunc={() => setError({target: 'frame.baseFrame', message: 'Сначала установите задние стойки'})}
+              />
+            </div>
+          </FormSection>
+      }
       {!lightKit.hidden &&
         <FormSection title='Освещение рабочей поверхности:'>
           <div className='FsLight__container'>
@@ -27,23 +44,6 @@ const FsLight = ({state, error, setError, onChange}) => {
               checkDisabledFunc={() => !baseFrame.selected || (mountKit.selected === 'No' && baseFrame.selected)}
               checkErrorFunc={() => mountKit.selected !== 'No'}
               throwErrorFunc={() => setError({target: 'light.mountKit', message: 'Сначала установите комплект крепления освещения'})}
-            />
-          </div>
-        </FormSection>
-      }
-      {!mountKit.hidden &&
-        <FormSection title='Комплект крепления освещения:'>
-          <div className='FsLight__container'>
-            <UiRadioBtnList
-              name='mountKit'
-              target='light.mountKit'
-              values={mountKit.options}
-              selected={mountKit.selected}
-              errors={error}
-              onChange={(e) => changeLightKitData('mountKit', e.target.value)}
-              checkDisabledFunc={() => !baseFrame.selected}
-              checkErrorFunc={() => baseFrame.selected}
-              throwErrorFunc={() => setError({target: 'frame.baseFrame', message: 'Сначала установите задние стойки'})}
             />
           </div>
         </FormSection>
