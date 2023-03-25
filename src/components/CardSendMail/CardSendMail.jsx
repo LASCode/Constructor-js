@@ -60,6 +60,12 @@ const CardSendMail = ({itemsArray, clearFunc}) => {
                     pattern: {value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Некорректнй email'}
                   })}/>
         </span>
+        <span className='CardSendMail__formItemContainer'>
+          {!!errors.inn && <span className='CardSendMail__errorMessage'>{errors.inn.message}</span>}
+          <input className='CardSendMail__input' type='text' placeholder='ИНН' {...register('inn', {
+            required: {value: true, message: 'Это обязательное поле'},
+          })}/>
+        </span>
         <input className='CardSendMail__input' type='text' placeholder='Комментарий к заказу' {...register('comment')}/>
         <div className='CardSendMail__actions'>
           <button className='CardSendMail__button' type='submit' disabled={isFetching}>Отправить</button>
