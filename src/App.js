@@ -6,8 +6,98 @@ import { CardEstimate } from "./components/CardEstimate/CardEstimate";
 import { TableImage } from "./components/TableImage/TableImage";
 import { CardSendMail } from "./components/CardSendMail/CardSendMail";
 
+const isAnySelected = (items) => items.some(el => el.selected);
+
 function App() {
   const initialState = [
+    {
+      type: 'Solid',
+      models: {
+        hidden: false,
+        registered: true,
+        options: ['Общепромышленное', 'Антистатическое'],
+        selected: 'Общепромышленное',
+      },
+      angular: { hidden: true, registered: true, options: ['Нет', 'Да'], selected: 'Нет' },
+      size: {
+        hidden: false,
+        width: { hidden: false, options: [1200, 1500, 1800], selected: 1500 },
+        deep: { hidden: false, options: [700], selected: 700 },
+      },
+      frame: {
+        hidden: false,
+        baseFrame: { hidden: false, registered: true, selected: false },
+        separatingFrame: { hidden: true, registered: true, selected: false },
+      },
+      shelf: {
+        hidden: false,
+        baseShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        additionalShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        bottomShelf: { hidden: true, registered: true, isActive: false, options: [300, 400], selected: 300 },
+      },
+      light: {
+        hidden: false,
+        mountKit: {
+          hidden: false,
+          registered: true,
+          options: ['No', 'Base'],
+          selected: 'No',
+        },
+        lightKit: {
+          hidden: false,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+        additionalLightKit: {
+          hidden: true,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+      },
+      additionalEquipment: {
+        hidden: false,
+        leftPerforatedPlate: {hidden: true, registered: true, selected: false},
+        rightPerforatedPlate: {hidden: true, registered: true, selected: false},
+        fullPerforatedPlate: {hidden: false, registered: true, selected: false},
+        fullHighPerforatedPlate: {hidden: true, registered: true, selected: false},
+        leftPlank: {hidden: true, registered: true, selected: false},
+        rightPlank: {hidden: true, registered: true, selected: false},
+        fullPlank: {hidden: true, registered: true, selected: false},
+        leftWiringPanel: {hidden: true, registered: true, selected: false},
+        rightWiringPanel: {hidden: true, registered: true, selected: false},
+        fullWiringPanel: {hidden: false, registered: true, selected: false},
+      },
+      accessories: {
+        hidden: false,
+        toolbarFront: {hidden: false, registered: true, selected: false},
+        toolbarBack: {hidden: true, registered: true, selected: false},
+        blueprintAdapterFront: {hidden: true, registered: true, selected: false},
+        blueprintAdapterBack: {hidden: true, registered: true, selected: false},
+        monitorAdapterFront: {hidden: true, registered: true, selected: false},
+        monitorAdapterBack: {hidden: true, registered: true, selected: false},
+        computerAdapterFront: {hidden: true, registered: true, selected: false},
+        computerAdapterBack: {hidden: true, registered: true, selected: false},
+        lockerDoubleFront: {hidden: true, registered: true, selected: false},
+        lockerDoubleBack: {hidden: true, registered: true, selected: false},
+        lockerTripleFront: {hidden: true, registered: true, selected: false},
+        lockerTripleBack: {hidden: true, registered: true, selected: false},
+        groundingNode: {hidden: true, registered: true, selected: false},
+        groundingKit: {hidden: true, registered: true, selected: false},
+
+        solid_locker_1L: {hidden: false, registered: true, selected: false},
+        solid_locker_1R: {hidden: false, registered: true, selected: false},
+        solid_locker_2L: {hidden: false, registered: true, selected: false},
+        solid_locker_2R: {hidden: false, registered: true, selected: false},
+        solid_locker_3L: {hidden: false, registered: true, selected: false},
+        solid_locker_3R: {hidden: false, registered: true, selected: false},
+        solid_locker_5L: {hidden: false, registered: true, selected: false},
+        solid_locker_5R: {hidden: false, registered: true, selected: false},
+        solid_rail: {hidden: false, registered: true, selected: false},
+      }
+    },
+
     {
       type: 'Base',
       models: {
@@ -379,6 +469,7 @@ function App() {
     const dataCopy = {...data};
     const {
       type,
+      size: {width},
       frame: {baseFrame, separatingFrame},
       shelf: {baseShelf, additionalShelf},
       light: {mountKit, additionalLightKit, lightKit},
@@ -398,6 +489,15 @@ function App() {
         lockerTripleBack,
         groundingNode,
         groundingKit,
+        solid_locker_1L,
+        solid_locker_1R,
+        solid_locker_2L,
+        solid_locker_2R,
+        solid_locker_3L,
+        solid_locker_3R,
+        solid_locker_5L,
+        solid_locker_5R,
+        solid_rail,
       }
     } = dataCopy;
     // Отключение baseShelf при деактивации baseFrame
@@ -429,6 +529,7 @@ function App() {
       fullHighPerforatedPlate.selected = false;
       fullPlank.selected = false;
       fullWiringPanel.selected = false;
+      if (solid_rail) { solid_rail.selected = false }
     }
     if (!separatingFrame.selected) {
       leftPerforatedPlate.selected = false;
@@ -469,6 +570,61 @@ function App() {
     }
     if (lockerDoubleBack.selected && lockerTripleBack.selected && currentType.accessories.lockerTripleBack.selected) {
       lockerTripleBack.selected = false;
+    }
+
+    // Костыль отключения левых шкафов при выборе 1200 глубины Solid стола.
+    if (
+        type === 'Solid' &&
+        currentType.size.width.selected !== 1200 &&
+        width.selected === 1200 &&
+        isAnySelected([
+          solid_locker_1L,
+          solid_locker_2L,
+          solid_locker_3L,
+          solid_locker_5L
+        ])) {
+      solid_locker_1L.selected = false;
+      solid_locker_2L.selected = false;
+      solid_locker_3L.selected = false;
+      solid_locker_5L.selected = false;
+    }
+    // Костыль Radiocheckbox для Solid шкафов.
+    if (type === 'Solid') {
+      const newLeftLockers = [
+        solid_locker_1L,
+        solid_locker_2L,
+        solid_locker_3L,
+        solid_locker_5L,
+      ];
+      const oldLeftLockers = [
+        currentType.accessories.solid_locker_1L,
+        currentType.accessories.solid_locker_2L,
+        currentType.accessories.solid_locker_3L,
+        currentType.accessories.solid_locker_5L,
+      ];
+      const newRightLockers = [
+        solid_locker_1R,
+        solid_locker_2R,
+        solid_locker_3R,
+        solid_locker_5R,
+      ];
+      const oldRightLockers = [
+        currentType.accessories.solid_locker_1R,
+        currentType.accessories.solid_locker_2R,
+        currentType.accessories.solid_locker_3R,
+        currentType.accessories.solid_locker_5R,
+      ];
+
+      const checkArr = (item, index, arr) => item.selected !== arr[index].selected && item.selected === true;
+
+      const leftOpposite = newLeftLockers.findIndex((el, i) => checkArr(el, i, oldLeftLockers))
+      if (leftOpposite !== -1) {
+        newLeftLockers.forEach((el, i) => el.selected = i === leftOpposite)
+      }
+      const rightOpposite = newRightLockers.findIndex((el, i) => checkArr(el, i, oldRightLockers))
+      if (rightOpposite !== -1) {
+        newRightLockers.forEach((el, i) => el.selected = i === rightOpposite)
+      }
     }
     setCurrentType(dataCopy);
   }
@@ -630,6 +786,44 @@ function App() {
         item: {name: `Подставка под системный блок`, size: `-`},
         when: computerAdapterBack.selected && computerAdapterBack.registered
       },
+      ...(type === 'Solid' ? [
+        {
+          item: {name: `Рельс`, size: `${width}`},
+          when: accessories.solid_rail.selected && accessories.solid_rail.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 1 ящик (Левая)`, size: `-`},
+          when: accessories.solid_locker_1L.selected && accessories.solid_locker_1L.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 1 ящик (Правая)`, size: `-`},
+          when: accessories.solid_locker_1R.selected && accessories.solid_locker_1R.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 2 ящика (Левая)`, size: `-`},
+          when: accessories.solid_locker_2L.selected && accessories.solid_locker_2L.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 2 ящика (Правая)`, size: `-`},
+          when: accessories.solid_locker_2R.selected && accessories.solid_locker_2R.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 3 ящика (Левая)`, size: `-`},
+          when: accessories.solid_locker_3L.selected && accessories.solid_locker_3L.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 3 ящика (Правая)`, size: `-`},
+          when: accessories.solid_locker_3R.selected && accessories.solid_locker_3R.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 5 ящиков (Левая)`, size: `-`},
+          when: accessories.solid_locker_5L.selected && accessories.solid_locker_5L.registered
+        },
+        {
+          item: {name: `Подвесная тумба на 5 ящиков (Правая)`, size: `-`},
+          when: accessories.solid_locker_5R.selected && accessories.solid_locker_5R.registered
+        },
+      ] : []),
     ];
   }
   const formattedItemsArray = getItemsArray(currentType).filter(el => el.when).map(el => el.item);

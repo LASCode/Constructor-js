@@ -20,7 +20,7 @@ const StyledTitle = styled.h4`
   font-size: 22px;
   line-height: 28px;
   color: #000;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 `;
 const StyledBody = styled.div`

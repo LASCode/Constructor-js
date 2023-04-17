@@ -73,6 +73,7 @@ import blueprintAdapterBase from '../../assets/blueprintAdapter_base.png';
 import blueprintAdapterDual1 from '../../assets/blueprintAdapter_dual-1.png';
 import blueprintAdapterDual2 from '../../assets/blueprintAdapter_dual-2.png';
 import blueprintAdapterModern from '../../assets/blueprintAdapter_modern.png';
+import { TableSolidImages } from '../../assets/TableSolid'
 import {
   CSSTransition,
   Transition,
@@ -223,6 +224,34 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: angular.selected === 'Да', img: angularTable},
     {when: models.selected === 'Антистатическое', img: antistatic},
   ];
+  const solidTableItemsArray = [
+    ...(type === 'Solid' ? [
+      {when: accessories.solid_locker_5R.selected, img: TableSolidImages.LOCKER_5R},
+      {when: accessories.solid_locker_3R.selected, img: TableSolidImages.LOCKER_3R},
+      {when: accessories.solid_locker_2R.selected, img: TableSolidImages.LOCKER_2R},
+      {when: accessories.solid_locker_1R.selected, img: TableSolidImages.LOCKER_1R},
+    ] : []),
+    {when: accessories.toolbarFront.selected, img: TableSolidImages.TOOLBAR},
+    {when: light.mountKit.selected === 'Base', img: TableSolidImages.LIGHTKIT_BASE},
+    {when: frame.baseFrame.selected, img: TableSolidImages.FRAME_BASE},
+    {when: shelf.baseShelf.isActive, img: TableSolidImages.SHELF_BASE},
+
+    {when: shelf.additionalShelf.isActive, img: TableSolidImages.SHELF_ADDITIONAL},
+    {when: true, img: TableSolidImages.BASE_1},
+    {when: true, img: TableSolidImages.BASE_2},
+    ...(type === 'Solid' ? [
+      {when: accessories.solid_rail.selected, img: TableSolidImages.RAIL},
+      {when: accessories.solid_locker_5L.selected, img: TableSolidImages.LOCKER_5L},
+      {when: accessories.solid_locker_3L.selected, img: TableSolidImages.LOCKER_3L},
+      {when: accessories.solid_locker_2L.selected, img: TableSolidImages.LOCKER_2L},
+      {when: accessories.solid_locker_1L.selected, img: TableSolidImages.LOCKER_1L},
+    ] : []),
+    {when: true, img: TableSolidImages.BASE_3},
+    {when: additionalEquipment.fullWiringPanel.selected, img: TableSolidImages.WIRINGPANEL},
+    {when: additionalEquipment.fullPerforatedPlate.selected, img: TableSolidImages.PERFOPANEL},
+    {when: light.lightKit.selected === 'Светодиодное', img: TableSolidImages.LAMP_BASE},
+    {when: models.selected === 'Антистатическое', img: TableSolidImages.ANTISTATIC},
+  ];
 
   const getCurrentImageItemsArray = (type) => {
     switch (type) {
@@ -231,6 +260,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
       case 'Modern': return modernTableItemsArray;
       case 'Simple': return simpleTableItemsArray;
       case 'Advanced': return advancedTableItemsArray;
+      case 'Solid': return solidTableItemsArray;
       default: return [];
     }
   }
