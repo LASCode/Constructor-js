@@ -123,12 +123,12 @@ const FsAccessories = ({state, error, setError, onChange}) => {
       {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
     ] : [
       {target: 'solid_locker_1L', title: 'Подвесная тумба на 1 ящик (Левая)'},
-      {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
       {target: 'solid_locker_2L', title: 'Подвесная тумба на 2 ящика (Левая)'},
-      {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
       {target: 'solid_locker_3L', title: 'Подвесная тумба на 3 ящика (Левая)'},
-      {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
       {target: 'solid_locker_5L', title: 'Подвесная тумба на 5 ящиков (Левая)'},
+      {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
+      {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
+      {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
       {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
     ] : [])
   ];
