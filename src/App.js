@@ -11,6 +11,83 @@ const isAnySelected = (items) => items.some(el => el.selected);
 function App() {
   const initialState = [
     {
+      type: 'Base',
+      models: {
+        hidden: false,
+        registered: true,
+        options: ['Общепромышленное', 'Антистатическое'],
+        selected: 'Общепромышленное',
+      },
+      angular: { hidden: false, registered: true, options: ['Нет', 'Да'], selected: 'Нет' },
+      size: {
+        hidden: false,
+        width: { hidden: false, options: [1200, 1500, 1800], selected: 1500 },
+        deep: { hidden: false, options: [500, 700, 900], selected: 700 },
+      },
+      frame: {
+        hidden: false,
+        baseFrame: { hidden: false, registered: true, selected: false },
+        separatingFrame: { hidden: false, registered: true, selected: false },
+      },
+      shelf: {
+        hidden: false,
+        baseShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        additionalShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        bottomShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+      },
+      light: {
+        hidden: false,
+        mountKit: {
+          hidden: false,
+          registered: true,
+          options: ['No', 'Base', 'Advanced'],
+          selected: 'No',
+        },
+        lightKit: {
+          hidden: false,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+        additionalLightKit: {
+          hidden: false,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+      },
+      additionalEquipment: {
+        hidden: false,
+        leftPerforatedPlate: {hidden: false, registered: true, selected: false},
+        rightPerforatedPlate: {hidden: false, registered: true, selected: false},
+        fullPerforatedPlate: {hidden: false, registered: true, selected: false},
+        fullHighPerforatedPlate: {hidden: false, registered: true, selected: false},
+        leftPlank: {hidden: false, registered: true, selected: false},
+        rightPlank: {hidden: false, registered: true, selected: false},
+        fullPlank: {hidden: false, registered: true, selected: false},
+        leftWiringPanel: {hidden: false, registered: true, selected: false},
+        rightWiringPanel: {hidden: false, registered: true, selected: false},
+        fullWiringPanel: {hidden: false, registered: true, selected: false},
+      },
+      accessories: {
+        hidden: false,
+        toolbarFront: {hidden: false, registered: true, selected: false},
+        toolbarBack: {hidden: true, registered: true, selected: false},
+        blueprintAdapterFront: {hidden: false, registered: true, selected: false},
+        blueprintAdapterBack: {hidden: true, registered: true, selected: false},
+        monitorAdapterFront: {hidden: false, registered: true, selected: false},
+        monitorAdapterBack: {hidden: true, registered: true, selected: false},
+        computerAdapterFront: {hidden: false, registered: true, selected: false},
+        computerAdapterBack: {hidden: true, registered: true, selected: false},
+        lockerDoubleFront: {hidden: false, registered: true, selected: false},
+        lockerDoubleBack: {hidden: true, registered: true, selected: false},
+        lockerTripleFront: {hidden: false, registered: true, selected: false},
+        lockerTripleBack: {hidden: true, registered: true, selected: false},
+        groundingNode: {hidden: false, registered: true, selected: false},
+        groundingKit: {hidden: false, registered: true, selected: false},
+      }
+    },
+    {
       type: 'Solid',
       models: {
         hidden: false,
@@ -95,84 +172,6 @@ function App() {
         solid_locker_5L: {hidden: false, registered: true, selected: false},
         solid_locker_5R: {hidden: false, registered: true, selected: false},
         solid_rail: {hidden: false, registered: true, selected: false},
-      }
-    },
-
-    {
-      type: 'Base',
-      models: {
-        hidden: false,
-        registered: true,
-        options: ['Общепромышленное', 'Антистатическое'],
-        selected: 'Общепромышленное',
-      },
-      angular: { hidden: false, registered: true, options: ['Нет', 'Да'], selected: 'Нет' },
-      size: {
-        hidden: false,
-        width: { hidden: false, options: [1200, 1500, 1800], selected: 1500 },
-        deep: { hidden: false, options: [500, 700, 900], selected: 700 },
-      },
-      frame: {
-        hidden: false,
-        baseFrame: { hidden: false, registered: true, selected: false },
-        separatingFrame: { hidden: false, registered: true, selected: false },
-      },
-      shelf: {
-        hidden: false,
-        baseShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
-        additionalShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
-        bottomShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
-      },
-      light: {
-        hidden: false,
-        mountKit: {
-          hidden: false,
-          registered: true,
-          options: ['No', 'Base', 'Advanced'],
-          selected: 'No',
-        },
-        lightKit: {
-          hidden: false,
-          registered: true,
-          options: ['Без освещения', 'Светодиодное'],
-          selected: 'Без освещения'
-        },
-        additionalLightKit: {
-          hidden: false,
-          registered: true,
-          options: ['Без освещения', 'Светодиодное'],
-          selected: 'Без освещения'
-        },
-      },
-      additionalEquipment: {
-        hidden: false,
-        leftPerforatedPlate: {hidden: false, registered: true, selected: false},
-        rightPerforatedPlate: {hidden: false, registered: true, selected: false},
-        fullPerforatedPlate: {hidden: false, registered: true, selected: false},
-        fullHighPerforatedPlate: {hidden: false, registered: true, selected: false},
-        leftPlank: {hidden: false, registered: true, selected: false},
-        rightPlank: {hidden: false, registered: true, selected: false},
-        fullPlank: {hidden: false, registered: true, selected: false},
-        leftWiringPanel: {hidden: false, registered: true, selected: false},
-        rightWiringPanel: {hidden: false, registered: true, selected: false},
-        fullWiringPanel: {hidden: false, registered: true, selected: false},
-      },
-      accessories: {
-        hidden: false,
-        toolbarFront: {hidden: false, registered: true, selected: false},
-        toolbarBack: {hidden: true, registered: true, selected: false},
-        blueprintAdapterFront: {hidden: false, registered: true, selected: false},
-        blueprintAdapterBack: {hidden: true, registered: true, selected: false},
-        monitorAdapterFront: {hidden: false, registered: true, selected: false},
-        monitorAdapterBack: {hidden: true, registered: true, selected: false},
-        computerAdapterFront: {hidden: false, registered: true, selected: false},
-        computerAdapterBack: {hidden: true, registered: true, selected: false},
-        lockerDoubleFront: {hidden: false, registered: true, selected: false},
-        lockerDoubleBack: {hidden: true, registered: true, selected: false},
-        lockerTripleFront: {hidden: false, registered: true, selected: false},
-        lockerTripleBack: {hidden: true, registered: true, selected: false},
-        groundingNode: {hidden: false, registered: true, selected: false},
-        groundingKit: {hidden: false, registered: true, selected: false},
       }
     },
     {
