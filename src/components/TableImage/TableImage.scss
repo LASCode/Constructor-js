@@ -21,8 +21,6 @@
   }
 
   &__img {
-    //max-height: 430px;
-    //max-width: 430px;
     max-height: 550px;
     max-width: 550px;
     position: absolute;
@@ -46,4 +44,11 @@
       opacity: 0;
     }
   }
+}
+
+.solid-mount-kit-base {
+  transform: translateY(2%);
+}
+.solid-light-kit-advanced {
+  transform: translateY(1.5%);
 }

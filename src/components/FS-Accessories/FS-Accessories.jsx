@@ -107,30 +107,22 @@ const FsAccessories = ({state, error, setError, onChange}) => {
       errorFunc: () => setError({target: 'frame.baseFrame', message: 'Сначала добавьте задние стойки!'})
     },
 
-    ...(type === 'Solid' ? [
-      {
-        target: 'solid_rail',
-        title: 'Рельс',
-        checkFunc: () => baseFrame.selected,
-        disableFunc: () => !baseFrame.selected,
-        errorFunc: () => setError({target: 'frame.baseFrame', message: 'Сначала добавьте задние стойки!'})
-      },
-    ] : []),
-    ...(type === 'Solid' ? size.width.selected === 1200 ? [
-      {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
-      {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
-      {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
-      {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
-    ] : [
-      {target: 'solid_locker_1L', title: 'Подвесная тумба на 1 ящик (Левая)'},
-      {target: 'solid_locker_2L', title: 'Подвесная тумба на 2 ящика (Левая)'},
-      {target: 'solid_locker_3L', title: 'Подвесная тумба на 3 ящика (Левая)'},
-      {target: 'solid_locker_5L', title: 'Подвесная тумба на 5 ящиков (Левая)'},
-      {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
-      {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
-      {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
-      {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
-    ] : [])
+    // ...(type === 'Solid' ? size.width.selected === 1200 ? [
+    //   {target: 'solid_locker_0R', title: 'Н - образная опора (Правая)'},
+    //   {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
+    //   {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
+    //   {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
+    //   {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
+    // ] : [
+    //   {target: 'solid_locker_1L', title: 'Подвесная тумба на 1 ящик (Левая)'},
+    //   {target: 'solid_locker_2L', title: 'Подвесная тумба на 2 ящика (Левая)'},
+    //   {target: 'solid_locker_3L', title: 'Подвесная тумба на 3 ящика (Левая)'},
+    //   {target: 'solid_locker_5L', title: 'Подвесная тумба на 5 ящиков (Левая)'},
+    //   {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
+    //   {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
+    //   {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
+    //   {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
+    // ] : [])
   ];
 
   return (

@@ -1,0 +1,14 @@
+.FsSupport {
+
+}
+
+.FsSupport__body {
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+}

@@ -104,7 +104,7 @@ function App() {
       frame: {
         hidden: false,
         baseFrame: { hidden: false, registered: true, selected: false },
-        separatingFrame: { hidden: true, registered: true, selected: false },
+        separatingFrame: { hidden: false, registered: true, selected: false },
       },
       shelf: {
         hidden: false,
@@ -117,7 +117,7 @@ function App() {
         mountKit: {
           hidden: false,
           registered: true,
-          options: ['No', 'Base'],
+          options: ['No', 'Base', 'Advanced'],
           selected: 'No',
         },
         lightKit: {
@@ -127,7 +127,7 @@ function App() {
           selected: 'Без освещения'
         },
         additionalLightKit: {
-          hidden: true,
+          hidden: false,
           registered: true,
           options: ['Без освещения', 'Светодиодное'],
           selected: 'Без освещения'
@@ -135,16 +135,20 @@ function App() {
       },
       additionalEquipment: {
         hidden: false,
-        leftPerforatedPlate: {hidden: true, registered: true, selected: false},
-        rightPerforatedPlate: {hidden: true, registered: true, selected: false},
+        leftPerforatedPlate: {hidden: false, registered: true, selected: false},
+        rightPerforatedPlate: {hidden: false, registered: true, selected: false},
         fullPerforatedPlate: {hidden: false, registered: true, selected: false},
         fullHighPerforatedPlate: {hidden: true, registered: true, selected: false},
-        leftPlank: {hidden: true, registered: true, selected: false},
-        rightPlank: {hidden: true, registered: true, selected: false},
-        fullPlank: {hidden: true, registered: true, selected: false},
-        leftWiringPanel: {hidden: true, registered: true, selected: false},
-        rightWiringPanel: {hidden: true, registered: true, selected: false},
+        fullPlank: {hidden: false, registered: true, selected: false},
+        leftPlank: {hidden: false, registered: true, selected: false},
+        rightPlank: {hidden: false, registered: true, selected: false},
+        leftWiringPanel: {hidden: false, registered: true, selected: false},
+        rightWiringPanel: {hidden: false, registered: true, selected: false},
         fullWiringPanel: {hidden: false, registered: true, selected: false},
+
+        // solid_rail_full: {hidden: false, registered: true, selected: false},
+        // solid_rail_left: {hidden: false, registered: true, selected: false},
+        // solid_rail_right: {hidden: false, registered: true, selected: false},
       },
       accessories: {
         hidden: false,
@@ -160,19 +164,22 @@ function App() {
         lockerDoubleBack: {hidden: true, registered: true, selected: false},
         lockerTripleFront: {hidden: true, registered: true, selected: false},
         lockerTripleBack: {hidden: true, registered: true, selected: false},
-        groundingNode: {hidden: true, registered: true, selected: false},
-        groundingKit: {hidden: true, registered: true, selected: false},
-
-        solid_locker_1L: {hidden: false, registered: true, selected: false},
-        solid_locker_1R: {hidden: false, registered: true, selected: false},
-        solid_locker_2L: {hidden: false, registered: true, selected: false},
-        solid_locker_2R: {hidden: false, registered: true, selected: false},
-        solid_locker_3L: {hidden: false, registered: true, selected: false},
-        solid_locker_3R: {hidden: false, registered: true, selected: false},
-        solid_locker_5L: {hidden: false, registered: true, selected: false},
-        solid_locker_5R: {hidden: false, registered: true, selected: false},
-        solid_rail: {hidden: false, registered: true, selected: false},
-      }
+        groundingNode: {hidden: false, registered: true, selected: false},
+        groundingKit: {hidden: false, registered: true, selected: false},
+      },
+      tableSupport: {
+        hidden: false,
+        solid_support_0L: {hidden: false, registered: true, selected: true},
+        solid_support_0R: {hidden: false, registered: true, selected: true},
+        solid_support_1L: {hidden: false, registered: true, selected: false},
+        solid_support_1R: {hidden: false, registered: true, selected: false},
+        solid_support_2L: {hidden: false, registered: true, selected: false},
+        solid_support_2R: {hidden: false, registered: true, selected: false},
+        solid_support_3L: {hidden: false, registered: true, selected: false},
+        solid_support_3R: {hidden: false, registered: true, selected: false},
+        solid_support_5L: {hidden: false, registered: true, selected: false},
+        solid_support_5R: {hidden: false, registered: true, selected: false},
+      },
     },
     {
       type: 'Advanced',
@@ -488,16 +495,8 @@ function App() {
         lockerTripleBack,
         groundingNode,
         groundingKit,
-        solid_locker_1L,
-        solid_locker_1R,
-        solid_locker_2L,
-        solid_locker_2R,
-        solid_locker_3L,
-        solid_locker_3R,
-        solid_locker_5L,
-        solid_locker_5R,
-        solid_rail,
-      }
+      },
+      tableSupport,
     } = dataCopy;
     // Отключение baseShelf при деактивации baseFrame
     if (!baseFrame.selected && baseShelf.isActive && currentType.frame.baseFrame.selected && currentType.shelf.baseShelf.isActive) {
@@ -528,7 +527,6 @@ function App() {
       fullHighPerforatedPlate.selected = false;
       fullPlank.selected = false;
       fullWiringPanel.selected = false;
-      if (solid_rail) { solid_rail.selected = false }
     }
     if (!separatingFrame.selected) {
       leftPerforatedPlate.selected = false;
@@ -575,60 +573,96 @@ function App() {
     if (
         type === 'Solid' &&
         currentType.size.width.selected !== 1200 &&
-        width.selected === 1200 &&
-        isAnySelected([
-          solid_locker_1L,
-          solid_locker_2L,
-          solid_locker_3L,
-          solid_locker_5L
-        ])) {
-      solid_locker_1L.selected = false;
-      solid_locker_2L.selected = false;
-      solid_locker_3L.selected = false;
-      solid_locker_5L.selected = false;
+        width.selected === 1200
+    ) {
+      const {solid_support_0L, solid_support_0R, solid_support_1L, solid_support_1R, solid_support_2L, solid_support_2R, solid_support_3L, solid_support_3R, solid_support_5L, solid_support_5R,} = tableSupport;
+
+      solid_support_0L.selected = true;
+      solid_support_1L.selected = false;
+      solid_support_2L.selected = false;
+      solid_support_3L.selected = false;
+      solid_support_5L.selected = false;
+      solid_support_0R.selected = true;
+      solid_support_1R.selected = false;
+      solid_support_2R.selected = false;
+      solid_support_3R.selected = false;
+      solid_support_5R.selected = false;
     }
+
     // Костыль Radiocheckbox для Solid шкафов.
     if (type === 'Solid') {
-      const newLeftLockers = [
-        solid_locker_1L,
-        solid_locker_2L,
-        solid_locker_3L,
-        solid_locker_5L,
+      const {solid_support_0L, solid_support_0R, solid_support_1L, solid_support_1R, solid_support_2L, solid_support_2R, solid_support_3L, solid_support_3R, solid_support_5L, solid_support_5R,} = tableSupport;
+
+      const newLeftSupports = [
+        solid_support_0L,
+        solid_support_1L,
+        solid_support_2L,
+        solid_support_3L,
+        solid_support_5L,
       ];
-      const oldLeftLockers = [
-        currentType.accessories.solid_locker_1L,
-        currentType.accessories.solid_locker_2L,
-        currentType.accessories.solid_locker_3L,
-        currentType.accessories.solid_locker_5L,
+      const oldLeftSupports = [
+        currentType.tableSupport.solid_support_0L,
+        currentType.tableSupport.solid_support_1L,
+        currentType.tableSupport.solid_support_2L,
+        currentType.tableSupport.solid_support_3L,
+        currentType.tableSupport.solid_support_5L,
       ];
-      const newRightLockers = [
-        solid_locker_1R,
-        solid_locker_2R,
-        solid_locker_3R,
-        solid_locker_5R,
+      const newRightSupports = [
+        solid_support_0R,
+        solid_support_1R,
+        solid_support_2R,
+        solid_support_3R,
+        solid_support_5R,
       ];
-      const oldRightLockers = [
-        currentType.accessories.solid_locker_1R,
-        currentType.accessories.solid_locker_2R,
-        currentType.accessories.solid_locker_3R,
-        currentType.accessories.solid_locker_5R,
+      const oldRightSupports = [
+        currentType.tableSupport.solid_support_0R,
+        currentType.tableSupport.solid_support_1R,
+        currentType.tableSupport.solid_support_2R,
+        currentType.tableSupport.solid_support_3R,
+        currentType.tableSupport.solid_support_5R,
       ];
 
       const checkArr = (item, index, arr) => item.selected !== arr[index].selected && item.selected === true;
 
-      const leftOpposite = newLeftLockers.findIndex((el, i) => checkArr(el, i, oldLeftLockers))
+      const leftOpposite = newLeftSupports.findIndex((el, i) => checkArr(el, i, oldLeftSupports))
       if (leftOpposite !== -1) {
-        newLeftLockers.forEach((el, i) => el.selected = i === leftOpposite)
+        newLeftSupports.forEach((el, i) => el.selected = i === leftOpposite);
+
+        if (width.selected === 1200) { newRightSupports.forEach((el, i) => el.selected = false) }
       }
-      const rightOpposite = newRightLockers.findIndex((el, i) => checkArr(el, i, oldRightLockers))
+      const rightOpposite = newRightSupports.findIndex((el, i) => checkArr(el, i, oldRightSupports))
       if (rightOpposite !== -1) {
-        newRightLockers.forEach((el, i) => el.selected = i === rightOpposite)
+        newRightSupports.forEach((el, i) => el.selected = i === rightOpposite);
+
+        if (width.selected === 1200) { newLeftSupports.forEach((el, i) => el.selected = false) }
       }
     }
+
+    // Костыль включения Н опоры при анселекте для Solid шкафов.
+    if (type === 'Solid') {
+      const {solid_support_0L, solid_support_0R, solid_support_1L, solid_support_1R, solid_support_2L, solid_support_2R, solid_support_3L, solid_support_3R, solid_support_5L, solid_support_5R,} = tableSupport;
+
+      const leftSupports = [
+        solid_support_1L,
+        solid_support_2L,
+        solid_support_3L,
+        solid_support_5L,
+      ];
+      const rightSupports = [
+        solid_support_1R,
+        solid_support_2R,
+        solid_support_3R,
+        solid_support_5R,
+      ];
+
+      if (!leftSupports.some((el) => el.selected)) { solid_support_0L.selected = true }
+      if (!rightSupports.some((el) => el.selected)) { solid_support_0R.selected = true }
+    }
+
     setCurrentType(dataCopy);
   }
   const getItemsArray = (data) => {
-    const {type, size, models, angular, frame, shelf, light, additionalEquipment, accessories} = {...data};
+    const {type, size, models, angular, frame, shelf, light, additionalEquipment, accessories, tableSupport} = {...data};
     const getWidth = (sizeData) => {
       return ({width: sizeData.width.selected, deep: sizeData.deep.selected});
     }
@@ -787,40 +821,44 @@ function App() {
       },
       ...(type === 'Solid' ? [
         {
-          item: {name: `Рельс`, size: `${width}`},
-          when: accessories.solid_rail.selected && accessories.solid_rail.registered
+          item: {name: `Н - Опора (Левая)`, size: `-`},
+          when: tableSupport.solid_support_0L.selected && tableSupport.solid_support_0L.registered
         },
         {
-          item: {name: `Подвесная тумба на 1 ящик (Левая)`, size: `-`},
-          when: accessories.solid_locker_1L.selected && accessories.solid_locker_1L.registered
+          item: {name: `Н - Опора (Правая)`, size: `-`},
+          when: tableSupport.solid_support_0R.selected && tableSupport.solid_support_0R.registered
         },
         {
-          item: {name: `Подвесная тумба на 1 ящик (Правая)`, size: `-`},
-          when: accessories.solid_locker_1R.selected && accessories.solid_locker_1R.registered
+          item: {name: `Тумба D (Левая)`, size: `-`},
+          when: tableSupport.solid_support_1L.selected && tableSupport.solid_support_1L.registered
         },
         {
-          item: {name: `Подвесная тумба на 2 ящика (Левая)`, size: `-`},
-          when: accessories.solid_locker_2L.selected && accessories.solid_locker_2L.registered
+          item: {name: `Тумба D (Правая)`, size: `-`},
+          when: tableSupport.solid_support_1R.selected && tableSupport.solid_support_1R.registered
         },
         {
-          item: {name: `Подвесная тумба на 2 ящика (Правая)`, size: `-`},
-          when: accessories.solid_locker_2R.selected && accessories.solid_locker_2R.registered
+          item: {name: `Тумба D1 (Левая)`, size: `-`},
+          when: tableSupport.solid_support_2L.selected && tableSupport.solid_support_2L.registered
         },
         {
-          item: {name: `Подвесная тумба на 3 ящика (Левая)`, size: `-`},
-          when: accessories.solid_locker_3L.selected && accessories.solid_locker_3L.registered
+          item: {name: `Тумба D1 (Правая)`, size: `-`},
+          when: tableSupport.solid_support_2R.selected && tableSupport.solid_support_2R.registered
         },
         {
-          item: {name: `Подвесная тумба на 3 ящика (Правая)`, size: `-`},
-          when: accessories.solid_locker_3R.selected && accessories.solid_locker_3R.registered
+          item: {name: `Тумба D3 (Левая)`, size: `-`},
+          when: tableSupport.solid_support_3L.selected && tableSupport.solid_support_3L.registered
         },
         {
-          item: {name: `Подвесная тумба на 5 ящиков (Левая)`, size: `-`},
-          when: accessories.solid_locker_5L.selected && accessories.solid_locker_5L.registered
+          item: {name: `Тумба D3 (Правая)`, size: `-`},
+          when: tableSupport.solid_support_3R.selected && tableSupport.solid_support_3R.registered
         },
         {
-          item: {name: `Подвесная тумба на 5 ящиков (Правая)`, size: `-`},
-          when: accessories.solid_locker_5R.selected && accessories.solid_locker_5R.registered
+          item: {name: `Тумба D5 (Левая)`, size: `-`},
+          when: tableSupport.solid_support_5L.selected && tableSupport.solid_support_5L.registered
+        },
+        {
+          item: {name: `Тумба D5 (Правая)`, size: `-`},
+          when: tableSupport.solid_support_5R.selected && tableSupport.solid_support_5R.registered
         },
       ] : []),
     ];

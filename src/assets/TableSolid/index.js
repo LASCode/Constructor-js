@@ -1,54 +1,83 @@
-import SolidTableBase1 from './Solid_Base-1.png';
-import SolidTableBase2 from './Solid_Base-2.png';
-import SolidTableBase3 from './Solid_Base-3.png';
-import SolidTableFrameBase from './Solid_Frame.png';
+import SolidTableBase from './Solid_Base.png';
+import SolidTableFrameBase from './Solid_Frame-base.png';
+import SolidTableFrameSeparating from './Solid_Frame-separating.png';
+
 import SolidLightkitBase from './Solid_Lightkit-base.png';
+import SolidLightkitAdvanced from './Solid_Lightkit-advanced.png';
+
 import SolidLampBase from './Solid_Lamp-base.png';
+import SolidLampAdditional from './Solid_Lamp-additional.png';
 
 import SolidAntistatic from './Solid_Antistatic.png';
-import SolidRail from './Solid_Accessories-rail.png';
 import SolidToolbar from './Solid_Accessories-toolbar.png';
-import SolidWiringPanel from './Solid_Additional-WiringPanel.png';
-import SolidPerfoPanel from './Solid_Additional-PerfoPanel.png';
+
+import SolidPlankFull from './Solid_Plank-full.png';
+import SolidPlankLeft from './Solid_Plank-left.png';
+import SolidPlankRight from './Solid_Plank-right.png';
+
+import SolidPerfopanelFull from './Solid_Perfopanel-full.png';
+import SolidPerfopanelLeft from './Solid_Perfopanel-left.png';
+import SolidPerfopanelRight from './Solid_Perfopanel-right.png';
+
+import SolidWiringpanelFull from './Solid_Wiringpanel-full.png';
+import SolidWiringpanelLeft from './Solid_Wiringpanel-left.png';
+import SolidWiringpanelRight from './Solid_Wiringpanel-right.png';
 
 import SolidShelfBase from './Solid_Shelf-base.png';
 import SolidShelfAdditional from './Solid_Shelf-additional.png';
 
-import SolidTableLocker_1L from './Solid_Locker-1-L.png'
-import SolidTableLocker_1R from './Solid_Locker-1-R.png'
-import SolidTableLocker_2L from './Solid_Locker-2-L.png'
-import SolidTableLocker_2R from './Solid_Locker-2-R.png'
-import SolidTableLocker_3L from './Solid_Locker-3-L.png'
-import SolidTableLocker_3R from './Solid_Locker-3-R.png'
-import SolidTableLocker_5L from './Solid_Locker-5-L.png'
-import SolidTableLocker_5R from './Solid_Locker-5-R.png'
+import SolidTableSupport_0L from './Solid_Support-0-L.png';
+import SolidTableSupport_0R from './Solid_Support-0-R.png';
+import SolidTableSupport_1L from './Solid_Support-1-L.png';
+import SolidTableSupport_1R from './Solid_Support-1-R.png';
+import SolidTableSupport_2L from './Solid_Support-2-L.png';
+import SolidTableSupport_2R from './Solid_Support-2-R.png';
+import SolidTableSupport_3L from './Solid_Support-3-L.png';
+import SolidTableSupport_3R from './Solid_Support-3-R.png';
+import SolidTableSupport_5L from './Solid_Support-5-L.png';
+import SolidTableSupport_5R from './Solid_Support-5-R.png';
 
 
 export const TableSolidImages = {
-    BASE_1: SolidTableBase1,
-    BASE_2: SolidTableBase2,
-    BASE_3: SolidTableBase3,
+    BASE: SolidTableBase,
+
     FRAME_BASE: SolidTableFrameBase,
+    FRAME_SEPARATING: SolidTableFrameSeparating,
+
+
+
     LIGHTKIT_BASE: SolidLightkitBase,
+    LIGHTKIT_ADVANCED: SolidLightkitAdvanced,
     LAMP_BASE: SolidLampBase,
+    LAMP_ADDITIONAL: SolidLampAdditional,
 
     SHELF_BASE: SolidShelfBase,
     SHELF_ADDITIONAL: SolidShelfAdditional,
 
-    LOCKER_1L: SolidTableLocker_1L,
-    LOCKER_1R: SolidTableLocker_1R,
-    LOCKER_2L: SolidTableLocker_2L,
-    LOCKER_2R: SolidTableLocker_2R,
-    LOCKER_3L: SolidTableLocker_3L,
-    LOCKER_3R: SolidTableLocker_3R,
-    LOCKER_5L: SolidTableLocker_5L,
-    LOCKER_5R: SolidTableLocker_5R,
+    SUPPORT_0L: SolidTableSupport_0L,
+    SUPPORT_0R: SolidTableSupport_0R,
+    SUPPORT_1L: SolidTableSupport_1L,
+    SUPPORT_1R: SolidTableSupport_1R,
+    SUPPORT_2L: SolidTableSupport_2L,
+    SUPPORT_2R: SolidTableSupport_2R,
+    SUPPORT_3L: SolidTableSupport_3L,
+    SUPPORT_3R: SolidTableSupport_3R,
+    SUPPORT_5L: SolidTableSupport_5L,
+    SUPPORT_5R: SolidTableSupport_5R,
 
-    RAIL: SolidRail,
+
+    PLANK_FULL: SolidPlankFull,
+    PLANK_LEFT: SolidPlankLeft,
+    PLANK_RIGHT: SolidPlankRight,
+
+    PERFOPANEL_FULL: SolidPerfopanelFull,
+    PERFOPANEL_LEFT: SolidPerfopanelLeft,
+    PERFOPANEL_RIGHT: SolidPerfopanelRight,
+
+    WIRINGPANEL_FULL: SolidWiringpanelFull,
+    WIRINGPANEL_LEFT: SolidWiringpanelLeft,
+    WIRINGPANEL_RIGHT: SolidWiringpanelRight,
+
     TOOLBAR: SolidToolbar,
-
-    PERFOPANEL: SolidPerfoPanel,
-    WIRINGPANEL: SolidWiringPanel,
-
     ANTISTATIC: SolidAntistatic,
 };

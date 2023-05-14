@@ -114,7 +114,7 @@ const StyledPartImage = styled.div`
 
 
 
-const TableImage = ({data: {type, models, angular, frame, shelf, light, additionalEquipment, accessories}}) => {
+const TableImage = ({data: {type, models, angular, frame, shelf, light, additionalEquipment, accessories, tableSupport}}) => {
   const [zoomIsActive, setZoomIsActive] = useState(false);
   const modernTableItemsArray = [
     {when: additionalEquipment.fullPlank.selected, img: plankModern},
@@ -226,32 +226,41 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
   ];
   const solidTableItemsArray = [
     ...(type === 'Solid' ? [
-      {when: accessories.solid_locker_5R.selected, img: TableSolidImages.LOCKER_5R},
-      {when: accessories.solid_locker_3R.selected, img: TableSolidImages.LOCKER_3R},
-      {when: accessories.solid_locker_2R.selected, img: TableSolidImages.LOCKER_2R},
-      {when: accessories.solid_locker_1R.selected, img: TableSolidImages.LOCKER_1R},
+      {when: tableSupport.solid_support_5R.selected, img: TableSolidImages.SUPPORT_5R},
+      {when: tableSupport.solid_support_3R.selected, img: TableSolidImages.SUPPORT_3R},
+      {when: tableSupport.solid_support_2R.selected, img: TableSolidImages.SUPPORT_2R},
+      {when: tableSupport.solid_support_1R.selected, img: TableSolidImages.SUPPORT_1R},
+      {when: tableSupport.solid_support_0R.selected, img: TableSolidImages.SUPPORT_0R},
     ] : []),
     {when: accessories.toolbarFront.selected, img: TableSolidImages.TOOLBAR},
-    {when: light.mountKit.selected === 'Base', img: TableSolidImages.LIGHTKIT_BASE},
+    {when: light.mountKit.selected === 'Base', img: TableSolidImages.LIGHTKIT_BASE, className: 'solid-mount-kit-base'},
+    {when: light.mountKit.selected === 'Advanced', img: TableSolidImages.LIGHTKIT_ADVANCED},
     {when: frame.baseFrame.selected, img: TableSolidImages.FRAME_BASE},
-    {when: shelf.baseShelf.isActive, img: TableSolidImages.SHELF_BASE},
-
-    {when: shelf.additionalShelf.isActive, img: TableSolidImages.SHELF_ADDITIONAL},
-    {when: true, img: TableSolidImages.BASE_1},
-    {when: true, img: TableSolidImages.BASE_2},
+    {when: frame.separatingFrame.selected, img: TableSolidImages.FRAME_SEPARATING},
     ...(type === 'Solid' ? [
-      {when: accessories.solid_rail.selected, img: TableSolidImages.RAIL},
-      {when: accessories.solid_locker_5L.selected, img: TableSolidImages.LOCKER_5L},
-      {when: accessories.solid_locker_3L.selected, img: TableSolidImages.LOCKER_3L},
-      {when: accessories.solid_locker_2L.selected, img: TableSolidImages.LOCKER_2L},
-      {when: accessories.solid_locker_1L.selected, img: TableSolidImages.LOCKER_1L},
+      {when: tableSupport.solid_support_5L.selected, img: TableSolidImages.SUPPORT_5L},
+      {when: tableSupport.solid_support_3L.selected, img: TableSolidImages.SUPPORT_3L},
+      {when: tableSupport.solid_support_2L.selected, img: TableSolidImages.SUPPORT_2L},
+      {when: tableSupport.solid_support_1L.selected, img: TableSolidImages.SUPPORT_1L},
+      {when: tableSupport.solid_support_0L.selected, img: TableSolidImages.SUPPORT_0L},
     ] : []),
-    {when: true, img: TableSolidImages.BASE_3},
-    {when: additionalEquipment.fullWiringPanel.selected, img: TableSolidImages.WIRINGPANEL},
-    {when: additionalEquipment.fullPerforatedPlate.selected, img: TableSolidImages.PERFOPANEL},
+    {when: true, img: TableSolidImages.BASE},
+    {when: additionalEquipment.fullWiringPanel.selected, img: TableSolidImages.WIRINGPANEL_FULL},
+    {when: additionalEquipment.leftWiringPanel.selected, img: TableSolidImages.WIRINGPANEL_LEFT},
+    {when: additionalEquipment.rightWiringPanel.selected, img: TableSolidImages.WIRINGPANEL_RIGHT},
+    {when: additionalEquipment.fullPerforatedPlate.selected, img: TableSolidImages.PERFOPANEL_FULL},
+    {when: additionalEquipment.leftPerforatedPlate.selected, img: TableSolidImages.PERFOPANEL_LEFT},
+    {when: additionalEquipment.rightPerforatedPlate.selected, img: TableSolidImages.PERFOPANEL_RIGHT},
+    {when: light.additionalLightKit.selected === 'Светодиодное', img: TableSolidImages.LAMP_ADDITIONAL, className: 'solid-light-kit-advanced'},
+    {when: shelf.baseShelf.isActive, img: TableSolidImages.SHELF_BASE},
+    {when: shelf.additionalShelf.isActive, img: TableSolidImages.SHELF_ADDITIONAL},
+    {when: additionalEquipment.fullPlank.selected, img: TableSolidImages.PLANK_FULL},
+    {when: additionalEquipment.leftPlank.selected, img: TableSolidImages.PLANK_LEFT},
+    {when: additionalEquipment.rightPlank.selected, img: TableSolidImages.PLANK_RIGHT},
     {when: light.lightKit.selected === 'Светодиодное', img: TableSolidImages.LAMP_BASE},
     {when: models.selected === 'Антистатическое', img: TableSolidImages.ANTISTATIC},
   ];
+  console.log(light.additionalLightKit.selected);
 
   const getCurrentImageItemsArray = (type) => {
     switch (type) {
@@ -272,7 +281,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
       <TransitionGroup>
         {formattedCurrentArr.map((el, i) =>
             <Transition key={el.img} in={el.when} timeout={500} unmountOnExit appear>
-              {(state) => <StyledPartImage src={el.img} state={state} />}
+              {(state) => <StyledPartImage src={el.img} state={state} className={el.className} />}
             </Transition>
         )}
       </TransitionGroup>
