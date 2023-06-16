@@ -52,3 +52,13 @@
 .solid-light-kit-advanced {
   transform: translateY(1.5%);
 }
+.antistatic-min {
+  height: 70% !important;
+  width: 70% !important;
+  background-position-x: 40% !important;
+  background-position-y: 20% !important;
+
+  &.simple {
+    background-position-y: 60% !important;
+  }
+}

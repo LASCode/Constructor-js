@@ -22,7 +22,7 @@ function App() {
       size: {
         hidden: false,
         width: { hidden: false, options: [1200, 1500, 1800], selected: 1500 },
-        deep: { hidden: false, options: [500, 700, 900], selected: 700 },
+        deep: { hidden: false, options: [700, 900], selected: 700 },
       },
       frame: {
         hidden: false,

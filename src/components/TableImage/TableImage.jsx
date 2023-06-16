@@ -127,14 +127,14 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: accessories.monitorAdapterFront.selected, img: monitorAdapterModern},
     {when: accessories.blueprintAdapterFront.selected, img: blueprintAdapterModern},
     {when: shelf.additionalShelf.isActive, img: shelfModernAdditional},
-    {when: models.selected === 'Антистатическое', img: antistatic},
+    {when: models.selected === 'Антистатическое', img: antistatic, className: 'antistatic-min'},
   ];
   const simpleTableItemsArray = [
     {when: true, img: simpleTable},
     {when: shelf.bottomShelf.isActive, img: shelfSimpleBottom},
     {when: accessories.lockerDoubleFront.selected, img: lockerSimpleDouble},
     {when: accessories.computerAdapterFront.selected, img: computerAdapterSimple},
-    {when: models.selected === 'Антистатическое', img: antistatic},
+    {when: models.selected === 'Антистатическое', img: antistatic, className: 'antistatic-min simple'},
   ];
   const dualTableItemsArray = [
     {when: light.lightKit.selected === 'Светодиодное', img: lampDouble2},
@@ -163,7 +163,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: accessories.blueprintAdapterFront.selected, img: blueprintAdapterDual1},
     {when: shelf.additionalShelf.isActive, img: shelfDualAdditional1},
     {when: light.additionalLightKit.selected === 'Светодиодное', img: lampAdvancedDouble1},
-    {when: models.selected === 'Антистатическое', img: antistatic},
+    {when: models.selected === 'Антистатическое', img: antistatic, className: 'antistatic-min'},
   ];
   const advancedTableItemsArray = [
     {when: frame.baseFrame.selected, img: baseFrame_base},
@@ -192,7 +192,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: accessories.blueprintAdapterFront.selected, img: blueprintAdapterBase},
     {when: accessories.monitorAdapterFront.selected, img: monitorAdapterBase},
     {when: angular.selected === 'Да', img: angularTable},
-    {when: models.selected === 'Антистатическое', img: antistatic},
+    {when: models.selected === 'Антистатическое', img: antistatic, className: 'antistatic-min'},
   ];
   const baseTableItemsArray = [
     {when: frame.baseFrame.selected, img: baseFrame_base},
@@ -222,7 +222,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: accessories.monitorAdapterFront.selected, img: monitorAdapterBase},
     {when: light.additionalLightKit.selected === 'Светодиодное', img: lampAdvancedBase},
     {when: angular.selected === 'Да', img: angularTable},
-    {when: models.selected === 'Антистатическое', img: antistatic},
+    {when: models.selected === 'Антистатическое', img: antistatic, className: 'antistatic-min'},
   ];
   const solidTableItemsArray = [
     ...(type === 'Solid' ? [
@@ -258,7 +258,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: additionalEquipment.leftPlank.selected, img: TableSolidImages.PLANK_LEFT},
     {when: additionalEquipment.rightPlank.selected, img: TableSolidImages.PLANK_RIGHT},
     {when: light.lightKit.selected === 'Светодиодное', img: TableSolidImages.LAMP_BASE},
-    {when: models.selected === 'Антистатическое', img: TableSolidImages.ANTISTATIC},
+    {when: models.selected === 'Антистатическое', img: TableSolidImages.ANTISTATIC, className: 'antistatic-min'},
   ];
   console.log(light.additionalLightKit.selected);
 
