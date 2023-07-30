@@ -5,7 +5,6 @@ import { UISelectButton } from "../UI-SelectButton/UI-SelectButton";
 
 const UISelectButtonWrapped = ({values, current, onChange, errors, target, disabled}) => {
   return (
-    <WithError targetName={target} errorArr={[]}>
       <div className='UISelectButtonWrapped'>
         {values.map((el, index) =>
           <UISelectButton
@@ -18,7 +17,6 @@ const UISelectButtonWrapped = ({values, current, onChange, errors, target, disab
           </UISelectButton>
         )}
       </div>
-    </WithError>
   );
 };
 

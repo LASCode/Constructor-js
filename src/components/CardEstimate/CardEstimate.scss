@@ -1,5 +1,5 @@
 .CardEstimate {
-  margin: 30px 50px;
+  margin: 30px 6px;
 
 
   &__title {
@@ -15,14 +15,14 @@
   &__table th {
     border-bottom: 1px solid black;
     text-align: left;
-    font-size: 18px;
+    //font-size: 18px;
     padding: 10px;
     &:not(:last-child) {
       border-right: 1px solid black;
     }
   }
   &__table td {
-    font-size: 18px;
+    //font-size: 18px;
     font-style: normal;
     font-weight: 300;
     letter-spacing: 0;

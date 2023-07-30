@@ -12,7 +12,7 @@ const StyledFormItemContainer = styled.div`
 const StyledTitle = styled.h5`
   margin: 0;
   padding: 0;
-  font-size: 18px;
+  font-size: calc(0.8rem + 0.2vw);
   line-height: 24px;
   letter-spacing: 0;
   color: #000;

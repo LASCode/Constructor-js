@@ -5,11 +5,11 @@
   background-color: transparent;
   color: #444444;
   line-height: 30px;
-  font-size: 1rem;
   outline: none;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
+  font-size: calc(0.7rem + 0.3vw);
 
   &:first-child {
     border-radius: 8px 0 0 8px;

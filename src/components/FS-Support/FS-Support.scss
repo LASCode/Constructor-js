@@ -1,14 +1,18 @@
 .FsSupport {
 
+  & .ErrorHandler {
+    margin: 0;
+  }
 }
 
 .FsSupport__body {
   display: flex;
   flex-direction: row;
+  gap: 15px;
 
   & > div {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 5px;
   }
 }

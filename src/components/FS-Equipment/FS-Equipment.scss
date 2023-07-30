@@ -1,7 +1,7 @@
 .FSEquipment {
   display: flex;
   flex-direction: column;
-  margin: 10px 50px 0 50px;
+  //margin: 10px 50px 0 50px;
 
   &__pageList {
     display: flex;
@@ -52,9 +52,11 @@
     border: 2px solid #aaaaaa;
     display: flex;
     flex-direction: column;
+    gap: 4px;
   }
   &__halfPage {
     display: flex;
     flex-direction: column;
+    gap: 4px;
   }
 }

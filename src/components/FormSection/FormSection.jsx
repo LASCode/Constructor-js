@@ -17,11 +17,18 @@ const StyledFormSection = styled.section`
 const StyledTitle = styled.h4`
   margin: 0;
   text-align: center;
-  font-size: 22px;
+  //font-size: 22px;
+  font-size: calc(1rem + 0.20vw);
   line-height: 28px;
   color: #000;
   font-weight: 600;
   white-space: nowrap;
+
+  @media (max-width: 1000px) {
+    white-space: pre-wrap;
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: 1fr;
+  }
 `;
 const StyledBody = styled.div`
   display: flex;

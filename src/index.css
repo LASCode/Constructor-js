@@ -1,2 +1,7 @@
 @import './assets/Fonts/Oswald/Oswald.scss';
 @import './assets/Fonts/Montserrat/Montserrat.scss';
+
+body {
+    margin: 0;
+    min-width: 300px;
+}
