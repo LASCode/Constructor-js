@@ -136,6 +136,11 @@ export const getPackagingEstimate = (data) => {
             when: data.packaging.rollHolderLeft.selected,
         },
         {
+            item: {name: `Боковой рулонный держатель вертикальный (левый)`, size: `-`},
+            when: data.packaging.rollHolderLeft.selected,
+        }, //
+
+        {
             item: {name: `Боковой бортик столешницы (Левый)`, size: `${deep} мм`},
             when: data.accessories.sidePlatformLeft.selected,
         },
