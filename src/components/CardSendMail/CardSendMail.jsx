@@ -28,7 +28,6 @@ const CardSendMail = ({itemsArray, clearFunc}) => {
           'content-type': 'application/x-www-form-urlencoded;charset=utf-8'
         }
       })
-      console.log(response);
       if (response.status === 200) { setSuccessPopup(true) }
       if (response.status !== 200) { setErrorPopup(true) }
     } catch (e) {
@@ -57,7 +56,7 @@ const CardSendMail = ({itemsArray, clearFunc}) => {
           {!!errors.email && <span className='CardSendMail__errorMessage'>{errors.email.message}</span>}
           <input className='CardSendMail__input' type='text' placeholder='Email' {...register('email', {
                     required: {value: true, message: 'Это обязательное поле'},
-                    pattern: {value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Некорректнй email'}
+                    pattern: {value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Некорректный email'}
                   })}/>
         </span>
         <span className='CardSendMail__formItemContainer'>

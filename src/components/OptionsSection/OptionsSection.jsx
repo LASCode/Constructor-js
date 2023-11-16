@@ -11,6 +11,8 @@ import { FsEquipment } from "../FS-Equipment/FS-Equipment";
 import { FsAccessories } from "../FS-Accessories/FS-Accessories";
 import { FsHrWrapper } from '../FS-HrWrapper/FS-HrWrapper';
 import {FSSupport} from "../FS-Support/FS-Support";
+import {FSTabletop} from "../FS-Tabletop/FS-Tabletop";
+import {FSPackagingRL} from "../FS-PackagingRL/FS-PackagingRL";
 
 const OptionsSection = ({data, onChangeData}) => {
   const [error, _setError] = useState([]);
@@ -40,6 +42,12 @@ const OptionsSection = ({data, onChangeData}) => {
   const changeShelf = (newShelfData) => {
     onChangeData({...data, shelf: newShelfData});
   }
+  const changeTabletop = (newTabletopData) => {
+    onChangeData({...data, tabletop: newTabletopData});
+  }
+  const changeSide = (newSideData) => {
+    onChangeData({...data, side: newSideData});
+  }
   const changeLight = (newLightData) => {
     onChangeData({...data, light: newLightData});
   }
@@ -51,6 +59,10 @@ const OptionsSection = ({data, onChangeData}) => {
   }
   const changeAccessories = (newAccessoriesData) => {
     onChangeData({...data, accessories: newAccessoriesData});
+  }
+
+  const changeByType = type => newData => {
+    onChangeData({...data, [type]: newData});
   }
 
   return (
@@ -69,6 +81,12 @@ const OptionsSection = ({data, onChangeData}) => {
       <FsHrWrapper border boldBorder>
         { !data.light.hidden && <FsLight state={data} error={error} setError={setError} onChange={changeLight}/> }
       </FsHrWrapper>
+
+      {data.type === 'Упаковочный' && (
+          <FsHrWrapper border boldBorder>
+            { !data?.packaging?.hidden && <FSPackagingRL state={data} error={error} setError={setError} onChange={changeByType('packaging')}/> }
+          </FsHrWrapper>
+      )}
 
       {data.type === 'Solid' && (
           <FsHrWrapper border boldBorder>

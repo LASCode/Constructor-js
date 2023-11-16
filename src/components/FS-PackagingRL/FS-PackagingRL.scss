@@ -1,0 +1,24 @@
+.FsPackagingRL {
+
+  & .ErrorHandler {
+    margin: 0;
+  }
+
+  &__title {
+    text-align: center;
+    margin: 10px 0;
+    font-weight: 600;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+}

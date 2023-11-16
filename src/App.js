@@ -5,6 +5,7 @@ import { ProductTypesSection } from "./components/ProductTypesSection/ProductTyp
 import { CardEstimate } from "./components/CardEstimate/CardEstimate";
 import { TableImage } from "./components/TableImage/TableImage";
 import { CardSendMail } from "./components/CardSendMail/CardSendMail";
+import {getPackagingEstimate} from "./utils/getPackagingEstimate";
 
 const isAnySelected = (items) => items.some(el => el.selected);
 
@@ -464,6 +465,104 @@ function App() {
         groundingKit: {hidden: true, registered: true, selected: false},
       }
     },
+    {
+      type: 'Упаковочный',
+      models: {
+        hidden: true,
+        registered: true,
+        options: ['Общепромышленное', 'Антистатическое'],
+        selected: 'Общепромышленное',
+      },
+      angular: { hidden: true, registered: true, options: ['Нет', 'Да'], selected: 'Нет' },
+      size: {
+        hidden: false,
+        width: { hidden: false, options: [1200, 1500, 1800, 2000], selected: 1500 },
+        deep: { hidden: false, options: [700, 900], selected: 700 },
+      },
+      frame: {
+        hidden: false,
+        baseFrame: { hidden: false, registered: true, selected: false },
+        separatingFrame: { hidden: false, registered: true, selected: false },
+      },
+      shelf: {
+        hidden: false,
+        baseShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        additionalShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+        bottomShelf: { hidden: false, registered: true, isActive: false, options: [300, 400], selected: 300 },
+      },
+      light: {
+        hidden: false,
+        mountKit: {
+          hidden: false,
+          registered: true,
+          options: ['No', 'Base'],
+          selected: 'No',
+        },
+        lightKit: {
+          hidden: false,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+        additionalLightKit: {
+          hidden: false,
+          registered: true,
+          options: ['Без освещения', 'Светодиодное'],
+          selected: 'Без освещения'
+        },
+      },
+      additionalEquipment: {
+        hidden: false,
+        leftPerforatedPlate: {hidden: false, registered: true, selected: false},
+        rightPerforatedPlate: {hidden: false, registered: true, selected: false},
+        fullPerforatedPlate: {hidden: false, registered: true, selected: false},
+        fullHighPerforatedPlate: {hidden: true, registered: true, selected: false},
+        leftPlank: {hidden: true, registered: true, selected: false},
+        rightPlank: {hidden: true, registered: true, selected: false},
+        fullPlank: {hidden: false, registered: true, selected: false},
+        leftWiringPanel: {hidden: true, registered: true, selected: false},
+        rightWiringPanel: {hidden: true, registered: true, selected: false},
+        fullWiringPanel: {hidden: true, registered: true, selected: false},
+        rollHolderBaseFull: {hidden: false, registered: true, selected: false},
+        rollHolderBaseLeft: {hidden: false, registered: true, selected: false},
+        rollHolderBaseRight: {hidden: false, registered: true, selected: false},
+      },
+      accessories: {
+        hidden: false,
+        toolbarFront: {hidden: true, registered: true, selected: false},
+        toolbarBack: {hidden: true, registered: true, selected: false},
+        blueprintAdapterFront: {hidden: true, registered: true, selected: false},
+        blueprintAdapterBack: {hidden: true, registered: true, selected: false},
+        monitorAdapterFront: {hidden: true, registered: true, selected: false},
+        monitorAdapterBack: {hidden: true, registered: true, selected: false},
+        computerAdapterFront: {hidden: true, registered: true, selected: false},
+        computerAdapterBack: {hidden: true, registered: true, selected: false},
+        lockerDoubleFront: {hidden: false, registered: true, selected: false},
+        lockerDoubleBack: {hidden: true, registered: true, selected: false},
+        lockerTripleFront: {hidden: false, registered: true, selected: false},
+        lockerTripleBack: {hidden: true, registered: true, selected: false},
+        groundingNode: {hidden: true, registered: true, selected: false},
+        groundingKit: {hidden: true, registered: true, selected: false},
+        sidePlatformBase: {hidden: false, registered: true, selected: false},
+        sidePlatformLeft: {hidden: false, registered: true, selected: false},
+        sidePlatformRight: {hidden: false, registered: true, selected: false},
+        sideShelfBase: {hidden: false, registered: true, selected: false},
+        sideShelfAdditional: {hidden: false, registered: true, selected: false},
+        rollHolderBottom: {hidden: false, registered: true, selected: false},
+      },
+
+      packaging: {
+        hidden: false,
+        leftShelf: {hidden: false, registered: true, selected: false},
+        rightShelf: {hidden: false, registered: true, selected: false},
+        leftTabletop: {hidden: false, registered: true, selected: false},
+        rightTabletop: {hidden: false, registered: true, selected: false},
+        rollHolderLeft: {hidden: false, registered: true, selected: false},
+        rollHolderRight: {hidden: false, registered: true, selected: false},
+        mountKitLeft: {hidden: false, registered: true, selected: false},
+        lampLeft: {hidden: false, registered: true, selected: false},
+      }
+    },
   ];
   const [currentType, setCurrentType] = useState(initialState[0]);
   const onChangeType = (type) => {
@@ -497,6 +596,7 @@ function App() {
         groundingKit,
       },
       tableSupport,
+        packaging
     } = dataCopy;
     // Отключение baseShelf при деактивации baseFrame
     if (!baseFrame.selected && baseShelf.isActive && currentType.frame.baseFrame.selected && currentType.shelf.baseShelf.isActive) {
@@ -659,6 +759,96 @@ function App() {
       if (!rightSupports.some((el) => el.selected)) { solid_support_0R.selected = true }
     }
 
+    if (type === 'Упаковочный') {
+      if (packaging.leftShelf.selected && currentType.packaging.leftTabletop.selected) {
+        packaging.leftTabletop.selected = false;
+      }
+      if (packaging.leftTabletop.selected && currentType.packaging.leftShelf.selected) {
+        packaging.leftShelf.selected = false;
+      }
+      if (packaging.leftTabletop.selected) {
+        packaging.rollHolderLeft.selected = false;
+      }
+
+      if (packaging.rightShelf.selected && currentType.packaging.rightTabletop.selected) {
+        packaging.rightTabletop.selected = false;
+      }
+      if (packaging.rightTabletop.selected && currentType.packaging.rightShelf.selected) {
+        packaging.rightShelf.selected = false;
+      }
+
+      if (!baseShelf.isActive) {
+        dataCopy.accessories.sideShelfBase.selected = false;
+      }
+      if (!additionalShelf.isActive) {
+        dataCopy.accessories.sideShelfAdditional.selected = false;
+      }
+      if (!separatingFrame.selected) {
+        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = false;
+        dataCopy.additionalEquipment.rollHolderBaseRight.selected = false;
+      } else {
+        dataCopy.additionalEquipment.rollHolderBaseFull.selected = false;
+      }
+
+      if (dataCopy.shelf.bottomShelf.isActive) {
+        dataCopy.accessories.rollHolderBottom.selected = false;
+      }
+
+      if (dataCopy.additionalEquipment.rightPerforatedPlate.selected) {
+        dataCopy.additionalEquipment.rollHolderBaseRight.selected = false;
+      }
+
+      if (
+          dataCopy.additionalEquipment.rightPerforatedPlate.selected &&
+          !dataCopy.additionalEquipment.rollHolderBaseRight.selected &&
+          currentType.additionalEquipment.rightPerforatedPlate.selected
+      ) {
+        dataCopy.additionalEquipment.rightPerforatedPlate.selected = false;
+        dataCopy.additionalEquipment.rollHolderBaseRight.selected = true;
+      }
+      if (
+          !dataCopy.additionalEquipment.rightPerforatedPlate.selected &&
+          dataCopy.additionalEquipment.rollHolderBaseRight.selected &&
+          currentType.additionalEquipment.rightPerforatedPlate.selected
+      ) {
+        dataCopy.additionalEquipment.rightPerforatedPlate.selected = true;
+        dataCopy.additionalEquipment.rollHolderBaseRight.selected = false;
+      }
+
+      if (
+          dataCopy.additionalEquipment.leftPerforatedPlate.selected &&
+          dataCopy.additionalEquipment.rollHolderBaseLeft.selected &&
+          currentType.additionalEquipment.leftPerforatedPlate.selected
+      ) {
+        dataCopy.additionalEquipment.leftPerforatedPlate.selected = false;
+        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = true;
+      }
+      if (
+          dataCopy.additionalEquipment.leftPerforatedPlate.selected &&
+          dataCopy.additionalEquipment.rollHolderBaseLeft.selected &&
+          !currentType.additionalEquipment.leftPerforatedPlate.selected
+      ) {
+        dataCopy.additionalEquipment.leftPerforatedPlate.selected = true;
+        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = false;
+      }
+
+
+
+
+      if (!baseFrame.selected) {
+        packaging.mountKitLeft.selected = false;
+        packaging.lampLeft.selected = false;
+        packaging.rollHolderRight.selected = false;
+      }
+      if (packaging.rollHolderLeft.selected) {
+        packaging.mountKitLeft.selected = false;
+        packaging.lampLeft.selected = false;
+      }
+      if (!packaging.mountKitLeft.selected) {
+        packaging.lampLeft.selected = false;
+      }
+    }
+
     setCurrentType(dataCopy);
   }
   const getItemsArray = (data) => {
@@ -697,11 +887,11 @@ function App() {
         when: models.selected === 'Антистатическое' && models.registered
       },
       {
-        item: {name: `Комплект стоек к рабочему столу(задняя стойка)`, size: `Для столов ${width}`},
+        item: {name: `Комплект стоек к рабочему столу (задняя стойка)`, size: `Для столов ${width}`},
         when: baseFrame.selected && baseFrame.registered
       },
       {
-        item: {name: `Средняя стойка`, size: `для столов ${width}`},
+        item: {name: `Разделительная рама`, size: `для столов ${width}`},
         when: separatingFrame.selected && separatingFrame.registered
       },
       {
@@ -861,9 +1051,24 @@ function App() {
           when: tableSupport.solid_support_5R.selected && tableSupport.solid_support_5R.registered
         },
       ] : []),
+
+      ...(type === 'Упаковочный' ? [
+        {
+          item: {name: `Н - Опора (Левая)`, size: `-`},
+          when: true
+        },
+      ] : []),
     ];
   }
-  const formattedItemsArray = getItemsArray(currentType).filter(el => el.when).map(el => el.item);
+
+  const itemsArray = (() => {
+    switch (currentType.type) {
+      case 'Упаковочный': return getPackagingEstimate(currentType);
+      default: return getItemsArray(currentType);
+    }
+  })();
+
+  const formattedItemsArray = itemsArray.filter(el => el.when).map(el => el.item);
 
   return (
     <div className="App">

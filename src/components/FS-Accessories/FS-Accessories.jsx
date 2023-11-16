@@ -4,7 +4,7 @@ import { FormSection } from "../FormSection/FormSection";
 import { UiCheckboxWrapped } from "../UI-CheckboxWrapped/UI-CheckboxWrapped";
 
 const FsAccessories = ({state, error, setError, onChange}) => {
-  const { accessories, light, frame, type, size } = state;
+  const { accessories, light, frame, type, size, tabletop } = state;
   const { mountKit } = light;
   const { baseFrame } = frame;
   const changeAccessoriesData = (target, value) => {
@@ -106,23 +106,42 @@ const FsAccessories = ({state, error, setError, onChange}) => {
       disableFunc: () => !baseFrame.selected,
       errorFunc: () => setError({target: 'frame.baseFrame', message: 'Сначала добавьте задние стойки!'})
     },
+    ...(type === 'Упаковочный' ? [
+      {
+        target: 'sidePlatformBase',
+        title: 'Бортик столешницы (основной)',
+      },
+      {
+        target: 'sidePlatformLeft',
+        title: 'Бортик столешницы (левый)',
+      },
+      {
+        target: 'sidePlatformRight',
+        title: 'Бортик столешницы (правый)',
+      },
 
-    // ...(type === 'Solid' ? size.width.selected === 1200 ? [
-    //   {target: 'solid_locker_0R', title: 'Н - образная опора (Правая)'},
-    //   {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
-    //   {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
-    //   {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
-    //   {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
-    // ] : [
-    //   {target: 'solid_locker_1L', title: 'Подвесная тумба на 1 ящик (Левая)'},
-    //   {target: 'solid_locker_2L', title: 'Подвесная тумба на 2 ящика (Левая)'},
-    //   {target: 'solid_locker_3L', title: 'Подвесная тумба на 3 ящика (Левая)'},
-    //   {target: 'solid_locker_5L', title: 'Подвесная тумба на 5 ящиков (Левая)'},
-    //   {target: 'solid_locker_1R', title: 'Подвесная тумба на 1 ящик (Правая)'},
-    //   {target: 'solid_locker_2R', title: 'Подвесная тумба на 2 ящика (Правая)'},
-    //   {target: 'solid_locker_3R', title: 'Подвесная тумба на 3 ящика (Правая)'},
-    //   {target: 'solid_locker_5R', title: 'Подвесная тумба на 5 ящиков (Правая)'},
-    // ] : [])
+      {
+        target: 'sideShelfBase',
+        title: 'Бортик верхней полки',
+        checkFunc: () => state.shelf.baseShelf.isActive,
+        disableFunc: () => !state.shelf.baseShelf.isActive,
+        errorFunc: () => setError({target: 'shelf.baseShelf', message: 'Сначала добавьте верхнюю полку!'})
+      },
+      {
+        target: 'sideShelfAdditional',
+        title: 'Бортик дополнительной полки',
+        checkFunc: () => state.shelf.additionalShelf.isActive,
+        disableFunc: () => !state.shelf.additionalShelf.isActive,
+        errorFunc: () => setError({target: 'shelf.additionalShelf', message: 'Сначала добавьте дополнительную полку!'})
+      },
+      {
+        target: 'rollHolderBottom',
+        title: 'Рулонный держатель нижний',
+        checkFunc: () => !state.shelf.bottomShelf.isActive,
+        disableFunc: () => state.shelf.bottomShelf.isActive,
+        errorFunc: () => setError({target: 'shelf.bottomShelf', message: 'Сначала уберите нижнюю полку!'})
+      },
+    ] : [])
   ];
 
   return (

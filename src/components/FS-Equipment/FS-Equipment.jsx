@@ -78,6 +78,16 @@ const FsEquipment = ({state, error, setError, onChange}) => {
           disableFunc: fullWidthCheckDisabledFunc,
           errorFunc: fullWidthThrowErrorFunc,
         },
+
+        ...(type === 'Упаковочный' ? [
+          {
+            target: 'rollHolderBaseFull',
+            title: `Рулонный держатель верхний`,
+            checkFunc: fullWidthCheckErrorFunc,
+            disableFunc: fullWidthCheckDisabledFunc,
+            errorFunc: fullWidthThrowErrorFunc,
+          },
+        ] : []),
       ],
     },
     {
@@ -90,6 +100,15 @@ const FsEquipment = ({state, error, setError, onChange}) => {
           disableFunc: halfWidthCheckDisableFunc,
           errorFunc: halfWidthThrowErrorFunc,
         },
+        ...(type === 'Упаковочный' ? [
+          {
+            target: 'rollHolderBaseLeft',
+            title: `Рулонный держатель задний (Левый)`,
+            checkFunc: halfWidthCheckErrorFunc,
+            disableFunc: halfWidthCheckDisableFunc,
+            errorFunc: halfWidthThrowErrorFunc,
+          },
+        ] : []),
         {
           target: 'rightPerforatedPlate',
           title: `Перфорированный экран (Правый)`,
@@ -97,6 +116,15 @@ const FsEquipment = ({state, error, setError, onChange}) => {
           disableFunc: halfWidthCheckDisableFunc,
           errorFunc: halfWidthThrowErrorFunc,
         },
+        ...(type === 'Упаковочный' ? [
+          {
+            target: 'rollHolderBaseRight',
+            title: `Рулонный держатель задний (Правый)`,
+            checkFunc: halfWidthCheckErrorFunc,
+            disableFunc: halfWidthCheckDisableFunc,
+            errorFunc: halfWidthThrowErrorFunc,
+          },
+        ] : []),
         {
           target: 'leftPlank',
           title: `Планка для крепления лотков (Левая)`,

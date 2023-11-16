@@ -41,40 +41,40 @@ const FsShelf = ({state, error, setError, onChange}) => {
       <FormSection title='Полки:' >
         <div className='FsShelf__body'>
           { !baseShelf.hidden &&
-            <FormItemContainer title={baseShelfLabel} >
-              <UISelectButtonWrapped
-                values={baseShelf.options}
-                current={baseShelf.selected}
-                onChange={(value) => changeShelfData('baseShelf', value)}
-                disabled={!baseShelf.isActive?baseShelf.options:[]}
-                errors={error}
-                target='shelf.baseShelf'
-              />
-            </FormItemContainer>
+              <FormItemContainer title={baseShelfLabel} >
+                <UISelectButtonWrapped
+                    values={baseShelf.options}
+                    current={baseShelf.selected}
+                    onChange={(value) => changeShelfData('baseShelf', value)}
+                    disabled={!baseShelf.isActive?baseShelf.options:[]}
+                    errors={error}
+                    target='shelf.baseShelf'
+                />
+              </FormItemContainer>
           }
           { !additionalShelf.hidden &&
-            <FormItemContainer title={additionalShelfLabel}>
-              <UISelectButtonWrapped
-                values={additionalShelf.options}
-                current={additionalShelf.selected}
-                onChange={(value) => changeShelfData('additionalShelf', value)}
-                disabled={!additionalShelf.isActive?additionalShelf.options:[]}
-                errors={error}
-                target='shelf.additionalShelf'
-              />
-            </FormItemContainer>
+              <FormItemContainer title={additionalShelfLabel}>
+                <UISelectButtonWrapped
+                    values={additionalShelf.options}
+                    current={additionalShelf.selected}
+                    onChange={(value) => changeShelfData('additionalShelf', value)}
+                    disabled={!additionalShelf.isActive?additionalShelf.options:[]}
+                    errors={error}
+                    target='shelf.additionalShelf'
+                />
+              </FormItemContainer>
           }
           { !bottomShelf.hidden &&
-            <FormItemContainer title={bottomShelfLabel}>
-              <UISelectButtonWrapped
-                values={bottomShelf.options}
-                current={bottomShelf.selected}
-                onChange={(value) => changeShelfData('bottomShelf', value)}
-                disabled={!bottomShelf.isActive?bottomShelf.options:[]}
-                errors={error}
-                target='shelf.bottomShelf'
-              />
-            </FormItemContainer>
+              <FormItemContainer title={bottomShelfLabel}>
+                <UISelectButtonWrapped
+                    values={bottomShelf.options}
+                    current={bottomShelf.selected}
+                    onChange={(value) => changeShelfData('bottomShelf', value)}
+                    disabled={!bottomShelf.isActive?bottomShelf.options:[]}
+                    errors={error}
+                    target='shelf.bottomShelf'
+                />
+              </FormItemContainer>
           }
         </div>
       </FormSection>

@@ -80,6 +80,7 @@ import {
   TransitionGroup
 } from "react-transition-group";
 import styled from "styled-components";
+import {TablePackagingImages} from "../../assets/TablePackaging";
 
 
 const StyledContainer = styled.div`
@@ -98,6 +99,12 @@ const StyledPartImage = styled.div`
   aspect-ratio: 1/1;
   transition: all .5s;
   
+  ${({$type}) => {
+    switch ($type) {
+      case "Упаковочный": return 'background-position-x: 60%;'
+    }
+  }}
+  
   ${({state}) => {
     switch (state) {
       case "entering":
@@ -114,7 +121,7 @@ const StyledPartImage = styled.div`
 
 
 
-const TableImage = ({data: {type, models, angular, frame, shelf, light, additionalEquipment, accessories, tableSupport}}) => {
+const TableImage = ({data: {type, models, angular, frame, shelf, light, additionalEquipment, accessories, tableSupport, tabletop, packaging}}) => {
   const [zoomIsActive, setZoomIsActive] = useState(false);
   const modernTableItemsArray = [
     {when: additionalEquipment.fullPlank.selected, img: plankModern},
@@ -260,7 +267,52 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
     {when: light.lightKit.selected === 'Светодиодное', img: TableSolidImages.LAMP_BASE},
     {when: models.selected === 'Антистатическое', img: TableSolidImages.ANTISTATIC, className: 'antistatic-min'},
   ];
-  console.log(light.additionalLightKit.selected);
+  const packagingTableItemsArray = [
+    {when: light.mountKit.selected === 'Base', img: TablePackagingImages.LIGHTKIT_BASE},
+    {when: frame.baseFrame.selected, img: TablePackagingImages.FRAME_BASE},
+    {when: frame.separatingFrame.selected, img: TablePackagingImages.FRAME_SEPARATING},
+    ...(type === 'Упаковочный' ? [
+      {when: packaging.leftShelf.selected, img: TablePackagingImages.SHELF_LEFT},
+      {when: packaging.leftTabletop.selected, img: TablePackagingImages.TABLETOP_LEFT},
+      {when: packaging.mountKitLeft.selected, img: TablePackagingImages.LIGHTKIT_LEFT},
+      {when: packaging.lampLeft.selected, img: TablePackagingImages.LAMP_LEFT},
+    ] : []),
+    ...(type === 'Упаковочный' ? [
+      {when: packaging.rollHolderLeft.selected, img: TablePackagingImages.ROLLHOLDER_LEFT},
+      {when: accessories.sidePlatformLeft.selected, img: TablePackagingImages.SIDE_PLATFORM_LEFT},
+      {when: accessories.sidePlatformBase.selected, img: TablePackagingImages.SIDE_PLATFORM_BASE},
+    ] : []),
+    {when: true, img: TablePackagingImages.BASE},
+    ...(type === 'Упаковочный' ? [
+      {when: accessories.sidePlatformRight.selected, img: TablePackagingImages.SIDE_PLATFORM_RIGHT},
+      {when: shelf.bottomShelf.isActive, img: TablePackagingImages.SHELF_BOTTOM},
+      {when: accessories.rollHolderBottom.selected, img: TablePackagingImages.ROLLHOLDER_BOTTOM},
+    ] : []),
+    {when: accessories.lockerDoubleFront.selected, img: TablePackagingImages.LOCKER_2},
+    {when: accessories.lockerTripleFront.selected, img: TablePackagingImages.LOCKER_3},
+    ...(type === 'Упаковочный' ? [
+      {when: packaging.rightShelf.selected, img: TablePackagingImages.SHELF_RIGHT},
+      {when: packaging.rightTabletop.selected, img: TablePackagingImages.TABLETOP_RIGHT},
+    ] : []),
+    {when: additionalEquipment.leftPerforatedPlate.selected, img: TablePackagingImages.PERFOPANEL_LEFT},
+    {when: additionalEquipment.rightPerforatedPlate.selected, img: TablePackagingImages.PERFOPANEL_RIGHT},
+    {when: additionalEquipment.fullPerforatedPlate.selected, img: TablePackagingImages.PERFOPANEL_FULL},
+    {when: shelf.baseShelf.isActive, img: TablePackagingImages.SHELF_BASE},
+    {when: shelf.additionalShelf.isActive, img: TablePackagingImages.SHELF_ADDITIONAL},
+    ...(type === 'Упаковочный' ? [
+      {when: accessories.sideShelfBase.selected, img: TablePackagingImages.SIDE_SHELF_BASE},
+      {when: accessories.sideShelfAdditional.selected, img: TablePackagingImages.SIDE_SHELF_ADDITIONAL},
+    ] : []),
+    {when: additionalEquipment.fullPlank.selected, img: TablePackagingImages.PLANK_FULL},
+    ...(type === 'Упаковочный' ? [
+      {when: packaging.rollHolderRight.selected, img: TablePackagingImages.ROLLHOLDER_RIGHT},
+      {when: additionalEquipment.rollHolderBaseFull.selected, img: TablePackagingImages.ROLLHOLDER_BASE_FULL},
+      {when: additionalEquipment.rollHolderBaseLeft.selected, img: TablePackagingImages.ROLLHOLDER_BASE_LEFT},
+      {when: additionalEquipment.rollHolderBaseRight.selected, img: TablePackagingImages.ROLLHOLDER_BASE_RIGHT},
+    ] : []),
+    {when: light.lightKit.selected === 'Светодиодное', img: TablePackagingImages.LAMP_BASE},
+    {when: light.additionalLightKit.selected === 'Светодиодное', img: TablePackagingImages.LAMP_ADDITIONAL},
+  ];
 
   const getCurrentImageItemsArray = (type) => {
     switch (type) {
@@ -270,6 +322,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
       case 'Simple': return simpleTableItemsArray;
       case 'Advanced': return advancedTableItemsArray;
       case 'Solid': return solidTableItemsArray;
+      case 'Упаковочный': return packagingTableItemsArray;
       default: return [];
     }
   }
@@ -281,7 +334,7 @@ const TableImage = ({data: {type, models, angular, frame, shelf, light, addition
       <TransitionGroup>
         {formattedCurrentArr.map((el, i) =>
             <Transition key={el.img} in={el.when} timeout={500} unmountOnExit appear>
-              {(state) => <StyledPartImage src={el.img} state={state} className={el.className} />}
+              {(state) => <StyledPartImage src={el.img} $type={type} state={state} className={el.className} />}
             </Transition>
         )}
       </TransitionGroup>

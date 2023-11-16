@@ -12,6 +12,7 @@ const FsLight = ({state, error, setError, onChange}) => {
   const changeLightKitData = (target, value) => {
     onChange({...light, [target]: {...light[target], selected: value}})
   }
+
   return (
     <>
       {!mountKit.hidden &&
