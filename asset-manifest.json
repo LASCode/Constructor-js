@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Constructor-js/static/css/main.1c40ec23.css",
-    "main.js": "/Constructor-js/static/js/main.6ce84a09.js",
+    "main.js": "/Constructor-js/static/js/main.964246ed.js",
     "static/media/computerAdapter_simple.png": "/Constructor-js/static/media/computerAdapter_simple.93fe422dbb7d2641d43d.png",
     "static/media/blueprintAdapter_dual-2.png": "/Constructor-js/static/media/blueprintAdapter_dual-2.a5cd37169a651e88b215.png",
     "static/media/locker_dual_triple-1.png": "/Constructor-js/static/media/locker_dual_triple-1.54fc6487c74b3df45573.png",
@@ -142,10 +142,10 @@
     "static/media/bulb.svg": "/Constructor-js/static/media/bulb.186b2c6f9d8c0e7c84ef0b7d134c4b19.svg",
     "static/media/checkmark.svg": "/Constructor-js/static/media/checkmark.7998fc5f3cfb0572c229d1c6323e7b15.svg",
     "main.1c40ec23.css.map": "/Constructor-js/static/css/main.1c40ec23.css.map",
-    "main.6ce84a09.js.map": "/Constructor-js/static/js/main.6ce84a09.js.map"
+    "main.964246ed.js.map": "/Constructor-js/static/js/main.964246ed.js.map"
   },
   "entrypoints": [
     "static/css/main.1c40ec23.css",
-    "static/js/main.6ce84a09.js"
+    "static/js/main.964246ed.js"
   ]
 }
