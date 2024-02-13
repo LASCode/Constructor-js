@@ -146,10 +146,6 @@ function App() {
         leftWiringPanel: {hidden: false, registered: true, selected: false},
         rightWiringPanel: {hidden: false, registered: true, selected: false},
         fullWiringPanel: {hidden: false, registered: true, selected: false},
-
-        // solid_rail_full: {hidden: false, registered: true, selected: false},
-        // solid_rail_left: {hidden: false, registered: true, selected: false},
-        // solid_rail_right: {hidden: false, registered: true, selected: false},
       },
       accessories: {
         hidden: false,
@@ -171,9 +167,9 @@ function App() {
       tableSupport: {
         hidden: false,
         solid_support_0L: {hidden: false, registered: true, selected: true},
-        solid_support_0R: {hidden: false, registered: true, selected: true},
+        solid_support_0R: {hidden: false, registered: true, selected: false},
         solid_support_1L: {hidden: false, registered: true, selected: false},
-        solid_support_1R: {hidden: false, registered: true, selected: false},
+        solid_support_1R: {hidden: false, registered: true, selected: true},
         solid_support_2L: {hidden: false, registered: true, selected: false},
         solid_support_2R: {hidden: false, registered: true, selected: false},
         solid_support_3L: {hidden: false, registered: true, selected: false},
@@ -736,6 +732,15 @@ function App() {
 
         if (width.selected === 1200) { newLeftSupports.forEach((el, i) => el.selected = false) }
       }
+
+      if (solid_support_0L.selected && currentType.tableSupport.solid_support_0R.selected) {
+        solid_support_0R.selected = false;
+        solid_support_1R.selected = true;
+      }
+      if (solid_support_0R.selected && currentType.tableSupport.solid_support_0L.selected) {
+        solid_support_0L.selected = false;
+        solid_support_1L.selected = true;
+      }
     }
 
     // Костыль включения Н опоры при анселекте для Solid шкафов.
@@ -794,46 +799,20 @@ function App() {
         dataCopy.accessories.rollHolderBottom.selected = false;
       }
 
-      if (dataCopy.additionalEquipment.rightPerforatedPlate.selected) {
-        dataCopy.additionalEquipment.rollHolderBaseRight.selected = false;
-      }
-
       if (
-          dataCopy.additionalEquipment.rightPerforatedPlate.selected &&
-          !dataCopy.additionalEquipment.rollHolderBaseRight.selected &&
-          currentType.additionalEquipment.rightPerforatedPlate.selected
+          dataCopy.additionalEquipment.rollHolderBaseLeft.selected &&
+          dataCopy.additionalEquipment.leftPerforatedPlate.selected
       ) {
-        dataCopy.additionalEquipment.rightPerforatedPlate.selected = false;
-        dataCopy.additionalEquipment.rollHolderBaseRight.selected = true;
+        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = !currentType.additionalEquipment.rollHolderBaseLeft.selected;
+        dataCopy.additionalEquipment.leftPerforatedPlate.selected = !currentType.additionalEquipment.leftPerforatedPlate.selected;
       }
       if (
-          !dataCopy.additionalEquipment.rightPerforatedPlate.selected &&
           dataCopy.additionalEquipment.rollHolderBaseRight.selected &&
-          currentType.additionalEquipment.rightPerforatedPlate.selected
+          dataCopy.additionalEquipment.rightPerforatedPlate.selected
       ) {
-        dataCopy.additionalEquipment.rightPerforatedPlate.selected = true;
-        dataCopy.additionalEquipment.rollHolderBaseRight.selected = false;
+        dataCopy.additionalEquipment.rollHolderBaseRight.selected = !currentType.additionalEquipment.rollHolderBaseRight.selected;
+        dataCopy.additionalEquipment.rightPerforatedPlate.selected = !currentType.additionalEquipment.rightPerforatedPlate.selected;
       }
-
-      if (
-          dataCopy.additionalEquipment.leftPerforatedPlate.selected &&
-          dataCopy.additionalEquipment.rollHolderBaseLeft.selected &&
-          currentType.additionalEquipment.leftPerforatedPlate.selected
-      ) {
-        dataCopy.additionalEquipment.leftPerforatedPlate.selected = false;
-        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = true;
-      }
-      if (
-          dataCopy.additionalEquipment.leftPerforatedPlate.selected &&
-          dataCopy.additionalEquipment.rollHolderBaseLeft.selected &&
-          !currentType.additionalEquipment.leftPerforatedPlate.selected
-      ) {
-        dataCopy.additionalEquipment.leftPerforatedPlate.selected = true;
-        dataCopy.additionalEquipment.rollHolderBaseLeft.selected = false;
-      }
-
-
-
 
       if (!baseFrame.selected) {
         packaging.mountKitLeft.selected = false;
