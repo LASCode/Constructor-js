@@ -741,6 +741,13 @@ function App() {
         solid_support_0L.selected = false;
         solid_support_1L.selected = true;
       }
+
+      newLeftSupports.forEach((el, i) => {
+        if (!el.selected && oldLeftSupports[i].selected) el.selected = true;
+      })
+      newRightSupports.forEach((el, i) => {
+        if (!el.selected && oldRightSupports[i].selected) el.selected = true;
+      })
     }
 
     // Костыль включения Н опоры при анселекте для Solid шкафов.
